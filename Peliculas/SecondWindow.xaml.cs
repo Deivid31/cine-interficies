@@ -26,7 +26,7 @@ namespace Peliculas
         public Window1()
         {
             InitializeComponent();
-            string path = "D:/Github/cine-interficies/cine-interficies/peliculas.txt";
+            string path = "C:/Users/Admin/Documents/GitHub/cine-interficies/peliculas.txt";
             List<Pelicula> pelis = new List<Pelicula>();
             string[] lineas = File.ReadAllLines(path);
             foreach (string linea in lineas)

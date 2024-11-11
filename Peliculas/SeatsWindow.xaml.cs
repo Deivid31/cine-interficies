@@ -26,7 +26,7 @@ namespace Cine_sillas
         {
             InitializeComponent();
             path = $"C:/Users/admin/source/repos/cine-interficies/rooms/{date}|{time}|{room}.txt"; //David
-            //path = "C:/Users/admin/source/repos/cine-interficies/rooms/{date}|{time}|{room}.txt"; //Izan
+            //path = "C:/Users/Admin/Documents/GitHub/cine-interficies/rooms/{date}|{time}|{room}.txt"; //Izan
             //path = "C:/Users/admin/source/repos/cine-interficies/rooms/{date}|{time}|{room}.txt"; //Ruben
 
             ReadSeats(path);

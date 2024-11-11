@@ -11,7 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Cine_sillas;
 using Peliculas;
+using Peliculas.Objetos;
 
 namespace Peliculas
 {
@@ -39,7 +41,8 @@ namespace Peliculas
 
         private void butReservar_Click(object sender, RoutedEventArgs e)
         {
-            //Reserva, ns
+            Pelicula pelicula = (Pelicula)filmBox.SelectedItem;
+            SeatsWindow seatsWindow = new SeatsWindow(pelicula.diaFinal, pelicula.Hora, pelicula.Sala);
         }
     }
 }

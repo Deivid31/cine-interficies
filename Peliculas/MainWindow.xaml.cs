@@ -22,7 +22,7 @@ namespace Peliculas
     /// </summary>
     public partial class MainWindow : Window
     {
-        string path = "C:/Users/Admin/source/repos/Peliculas/usuarios.txt";
+        string path = "C:/Users/Admin/Documents/GitHub/cine-interficies/usuarios.txt";
         public MainWindow()
         {
             InitializeComponent();

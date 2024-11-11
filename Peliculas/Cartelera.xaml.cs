@@ -57,6 +57,7 @@ namespace Peliculas
             TimeSpan? hourIn = null;
             if (diaInBox.SelectedDate != null)
             {
+                MessageBox.Show("Contraseña correcta, bienvenido de nuevo.", "Datos inicio de sesión", MessageBoxButton.OK, MessageBoxImage.Information);
                 diaIn = diaInBox.SelectedDate.Value;
             }
             if (hourBox.Text != "" && minuteBox.Text != "")
