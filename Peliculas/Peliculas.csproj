@@ -58,6 +58,10 @@
     <Compile Include="Cartelera.xaml.cs">
       <DependentUpon>Cartelera.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CarteleraFiltrada.xaml.cs">
+      <DependentUpon>CarteleraFiltrada.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Logica.cs" />
     <Compile Include="Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
     </Compile>
@@ -69,6 +73,10 @@
       <DependentUpon>SecondWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Cartelera.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CarteleraFiltrada.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
