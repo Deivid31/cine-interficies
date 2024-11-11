@@ -1,20 +1,20 @@
 ﻿Peliculas
 
 
-winexe
+exe
 C#
 .cs
-C:\Users\Admin\Documents\GitHub\cine-interficies\Peliculas\obj\Debug\
+C:\Users\admin\source\repos\cine-interficies\Peliculas\obj\Debug\
 Peliculas
 none
 false
 DEBUG;TRACE
-C:\Users\Admin\Documents\GitHub\cine-interficies\Peliculas\App.xaml
-61223470807
+C:\Users\admin\source\repos\cine-interficies\Peliculas\App.xaml
+72005289892
 
-12925967747
+13-5071606
 13-1310406943
-Cartelera.xaml;CarteleraFiltrada.xaml;MainWindow.xaml;Menu.xaml;seatsWindow.xaml;SecondWindow.xaml;
+AboutUs.xaml;Cartelera.xaml;CarteleraFiltrada.xaml;MainWindow.xaml;Menu.xaml;seatsWindow.xaml;SecondWindow.xaml;
 
-True
+False
 
