@@ -24,15 +24,20 @@ namespace Peliculas
             InitializeComponent();
             
         }
-        private void AbrirNuevaVentana()
+        private void AbrirNuevaVentana(int num)
         {
-            Window1 nuevaVentana = new Window1();
+            if (num == 0) {
+                AboutUs nuevaVentana = new AboutUs();
 
-            nuevaVentana.ShowDialog();
+                nuevaVentana.ShowDialog();
+            }else{
+
+            }
+            
         }
         private void button_sobre_Click(object sender, RoutedEventArgs e)
         {
-            AbrirNuevaVentana();
+            AbrirNuevaVentana(0);
         }
 
         private void button_cerrar_Click(object sender, RoutedEventArgs e)
