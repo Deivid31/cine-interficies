@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Admin\source\repos\Peliculas\Peliculas\obj\Debug\
+C:\Users\admin\source\repos\cine-interficies\Peliculas\obj\Debug\
 Peliculas
 none
 false
 DEBUG;TRACE
-C:\Users\Admin\source\repos\Peliculas\Peliculas\App.xaml
-3-789049164
+C:\Users\admin\source\repos\cine-interficies\Peliculas\App.xaml
+4246861188
 
-9-1317673977
+10269580871
 13-1310406943
-MainWindow.xaml;Menu.xaml;SecondWindow.xaml;
+MainWindow.xaml;Menu.xaml;seatsWindow.xaml;SecondWindow.xaml;
 
-True
+False
 
