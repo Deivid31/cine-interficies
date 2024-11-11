@@ -22,7 +22,8 @@ namespace Peliculas
     /// </summary>
     public partial class MainWindow : Window
     {
-        string path = "C:/Users/Admin/Documents/GitHub/cine-interficies/usuarios.txt";
+        string path = "./../../../usuarios.txt";
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -48,10 +49,11 @@ namespace Peliculas
         {
             txtBox_correo.Clear();
             PassBox.Clear();
+            Label_result.Content = Directory.GetCurrentDirectory();
         }
-        private void AbrirNuevaVentana()
+        private void AbrirNuevaVentana(Boolean admin)
         {
-            Window1 nuevaVentana = new Window1();
+            Menu nuevaVentana = new Menu(admin);
             
             nuevaVentana.ShowDialog();
         }
@@ -90,7 +92,11 @@ namespace Peliculas
                         {
                             MessageBox.Show("Contraseña correcta, bienvenido de nuevo.", "Datos inicio de sesión", MessageBoxButton.OK, MessageBoxImage.Information);
                             seguidas = 0;
-                            AbrirNuevaVentana();
+                            if (txtBox_correo.Text.Equals("admin@admin.com"))
+                            {
+                                AbrirNuevaVentana(true);
+                            }
+                            AbrirNuevaVentana(false);
                         }
                         else
                         {
@@ -110,7 +116,7 @@ namespace Peliculas
                         }
                         MessageBox.Show("Los datos introducidos son válidos para un registro, bienvenido.", "Datos Registro", MessageBoxButton.OK, MessageBoxImage.Information);
                         seguidas = 0;
-                        AbrirNuevaVentana();
+                        AbrirNuevaVentana(false);
                     }
 
                 }

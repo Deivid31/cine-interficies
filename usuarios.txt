@@ -15,3 +15,4 @@ a@a.com|12344
 xd@xd.xd|xd
 a.a@a.com|1234
 lol@lol.com|lol
+admin@admin.com|admin

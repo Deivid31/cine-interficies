@@ -19,10 +19,15 @@ namespace Peliculas
     /// </summary>
     public partial class Menu : Window
     {
-        public Menu()
+        Boolean x;
+        public Menu(Boolean admin)
         {
             InitializeComponent();
-            
+            if (!admin)
+            {
+                button_cargar.Content = "Comprar entradas";
+            }
+            x = admin;
         }
         private void AbrirNuevaVentana(int num)
         {
@@ -30,8 +35,16 @@ namespace Peliculas
                 AboutUs nuevaVentana = new AboutUs();
 
                 nuevaVentana.ShowDialog();
-            }else{
-
+            }
+            else if (num == 1)
+            {
+                Cargar_Peliculas cargar = new Cargar_Peliculas();
+                cargar.ShowDialog();
+            }
+            else
+            {
+                Cartelera cartelera = new Cartelera();
+                cartelera.ShowDialog();
             }
             
         }
@@ -47,7 +60,14 @@ namespace Peliculas
 
         private void button_cargar_Click(object sender, RoutedEventArgs e)
         {
-
+            if (!x)
+            {
+                AbrirNuevaVentana(1);
+            }
+            else
+            {
+                AbrirNuevaVentana(2);
+            }
         }
     }
 }

@@ -25,10 +25,8 @@ namespace Cine_sillas
         public SeatsWindow(DateTime date, TimeSpan time, int room)
         {
             InitializeComponent();
-            path = $"C:/Users/admin/source/repos/cine-interficies/rooms/{date}|{time}|{room}.txt"; //David
-            //path = "C:/Users/Admin/Documents/GitHub/cine-interficies/rooms/{date}|{time}|{room}.txt"; //Izan
-            //path = "C:/Users/admin/source/repos/cine-interficies/rooms/{date}|{time}|{room}.txt"; //Ruben
-
+            path = $"./../../../rooms/{date}|{time}|{room}.txt";
+            
             ReadSeats(path);
         }
 
