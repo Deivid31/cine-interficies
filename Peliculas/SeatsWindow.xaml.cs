@@ -25,7 +25,9 @@ namespace Cine_sillas
         public SeatsWindow() //DateTime date, TimeSpan time, int room
         {
             InitializeComponent();
-            path = "C:/Users/admin/source/repos/Cine sillas/sillas.txt";
+            path = "C:/Users/admin/source/repos/cine-interficies/sillas.txt"; //David
+            //path = "C:/Users/admin/source/repos/cine-interficies/sillas.txt"; //Izan
+            //path = "C:/Users/admin/source/repos/cine-interficies/sillas.txt"; //Ruben
 
             ReadSeats(path);
         }
