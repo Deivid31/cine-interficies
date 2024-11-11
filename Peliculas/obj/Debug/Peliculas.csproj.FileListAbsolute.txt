@@ -56,3 +56,5 @@ C:\Users\admin\source\repos\cine-interficies\Peliculas\obj\Debug\Peliculas.cspro
 C:\Users\admin\source\repos\cine-interficies\Peliculas\obj\Debug\Peliculas.csproj.CoreCompileInputs.cache
 C:\Users\admin\source\repos\cine-interficies\Peliculas\obj\Debug\Peliculas.exe
 C:\Users\admin\source\repos\cine-interficies\Peliculas\obj\Debug\Peliculas.pdb
+C:\Users\admin\source\repos\cine-interficies\Peliculas\obj\Debug\Cargar_Peliculas.g.cs
+C:\Users\admin\source\repos\cine-interficies\Peliculas\obj\Debug\Cargar_Peliculas.baml
