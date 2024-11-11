@@ -27,5 +27,9 @@ namespace Peliculas.Objetos
             Duracion = input7;
             Generos = input8;
         }
+        public override string ToString()
+        {
+            return Titulo + " - " + Hora.ToString("hh\\:mm");
+        }
     }
 }
