@@ -22,9 +22,25 @@ namespace Peliculas
         public Menu()
         {
             InitializeComponent();
+            
+        }
+        private void AbrirNuevaVentana()
+        {
+            Window1 nuevaVentana = new Window1();
+
+            nuevaVentana.ShowDialog();
+        }
+        private void button_sobre_Click(object sender, RoutedEventArgs e)
+        {
+            AbrirNuevaVentana();
         }
 
-        private void button_sobre_Click(object sender, RoutedEventArgs e)
+        private void button_cerrar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button_cargar_Click(object sender, RoutedEventArgs e)
         {
 
         }
