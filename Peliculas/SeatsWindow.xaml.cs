@@ -22,12 +22,12 @@ namespace Cine_sillas
         private List<String> seats_selected = new List<String>();
         private List<String> used_seats = new List<String>();
         string path;
-        public SeatsWindow() //DateTime date, TimeSpan time, int room
+        public SeatsWindow(DateTime date, TimeSpan time, int room)
         {
             InitializeComponent();
-            path = "C:/Users/admin/source/repos/cine-interficies/sillas.txt"; //David
-            //path = "C:/Users/admin/source/repos/cine-interficies/sillas.txt"; //Izan
-            //path = "C:/Users/admin/source/repos/cine-interficies/sillas.txt"; //Ruben
+            path = $"C:/Users/admin/source/repos/cine-interficies/rooms/{date}|{time}|{room}.txt"; //David
+            //path = "C:/Users/admin/source/repos/cine-interficies/rooms/{date}|{time}|{room}.txt"; //Izan
+            //path = "C:/Users/admin/source/repos/cine-interficies/rooms/{date}|{time}|{room}.txt"; //Ruben
 
             ReadSeats(path);
         }
