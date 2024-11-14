@@ -78,9 +78,6 @@
     <Compile Include="seatsWindow.xaml.cs">
       <DependentUpon>seatsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SecondWindow.xaml.cs">
-      <DependentUpon>SecondWindow.xaml</DependentUpon>
-    </Compile>
     <Page Include="AboutUs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -114,10 +111,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="seatsWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SecondWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
