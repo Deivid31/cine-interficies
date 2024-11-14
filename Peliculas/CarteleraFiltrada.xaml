@@ -45,9 +45,11 @@
                 <DataGridComboBoxColumn Header="Gèneres" ItemsSource="{Binding Generos}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="butCancelar" Content="Retornar" HorizontalAlignment="Left" Margin="10,217,0,0" VerticalAlignment="Top" Height="41" Width="88" Click="butCancelar_Click"/>
-        <ComboBox x:Name="filmBox" ItemsSource="{Binding Path=filtFilms}" HorizontalAlignment="Left" Height="41" Margin="10,59,0,0" VerticalAlignment="Top" Width="158"/>
-        <Button x:Name="butReservar" Content="Reservar" HorizontalAlignment="Left" Margin="10,146,0,0" VerticalAlignment="Top" Height="40" Width="88" Click="butReservar_Click"/>
-        <Label Content="Pelicula escollida:" HorizontalAlignment="Left" Height="23" Margin="10,31,0,0" VerticalAlignment="Top" Width="108"/>
+        <Button x:Name="butCancelar" Content="Retornar" HorizontalAlignment="Left" Margin="10,270,0,0" VerticalAlignment="Top" Height="41" Width="88" Click="butCancelar_Click"/>
+        <ComboBox x:Name="filmBox" ItemsSource="{Binding Path=filtFilms}" HorizontalAlignment="Left" Height="41" Margin="10,107,0,0" VerticalAlignment="Top" Width="158"/>
+        <Button x:Name="butReservar" Content="Reservar" HorizontalAlignment="Left" Margin="10,217,0,0" VerticalAlignment="Top" Height="40" Width="88" Click="butReservar_Click"/>
+        <Label Content="Pelicula escollida:" HorizontalAlignment="Left" Height="23" Margin="10,79,0,0" VerticalAlignment="Top" Width="108"/>
+        <Label Content="Dia de la pelicula:" HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" VerticalAlignment="Top" Width="108"/>
+        <Label x:Name="diaLbl" HorizontalAlignment="Left" Height="39" Margin="10,35,0,0" VerticalAlignment="Top" Width="54"/>
     </Grid>
 </Window>

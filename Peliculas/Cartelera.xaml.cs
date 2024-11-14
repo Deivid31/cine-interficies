@@ -57,25 +57,25 @@ namespace Peliculas
             TimeSpan? hourIn = null;
             if (diaInBox.SelectedDate != null)
             {
-                MessageBox.Show("Contraseña correcta, bienvenido de nuevo.", "Datos inicio de sesión", MessageBoxButton.OK, MessageBoxImage.Information);
                 diaIn = diaInBox.SelectedDate.Value;
+                if (hourBox.Text != "" && minuteBox.Text != "")
+                {
+                    hourIn = TimeSpan.ParseExact(hourBox.Text + ":" + minuteBox.Text, "hh\\:mm", CultureInfo.InvariantCulture);
+                }
+                else if (hourBox.Text != "" && minuteBox.Text == "")
+                {
+                    hourIn = TimeSpan.ParseExact(hourBox.Text + ":00", "hh\\:mm", CultureInfo.InvariantCulture);
+                }
+                else if (hourBox.Text == "" && minuteBox.Text != "")
+                {
+                    hourIn = TimeSpan.ParseExact("00:" + minuteBox.Text, "hh\\:mm", CultureInfo.InvariantCulture);
+                }
+                CarteleraFiltrada carteleraFiltrada = new CarteleraFiltrada(this, logica, genre, lang, diaIn, hourIn);
+                carteleraFiltrada.Show();
+                this.Hide();
+            } else {
+                MessageBox.Show("Es necesario introducir el dia de la pelicula", "Fecha faltante", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            if (hourBox.Text != "" && minuteBox.Text != "")
-            {
-                hourIn = TimeSpan.ParseExact(hourBox.Text + ":" + minuteBox.Text, "hh\\:mm", CultureInfo.InvariantCulture);
-            }
-            else if (hourBox.Text != "" && minuteBox.Text == "")
-            {
-                hourIn = TimeSpan.ParseExact(hourBox.Text + ":00", "hh\\:mm", CultureInfo.InvariantCulture);
-            }
-            else if (hourBox.Text == "" && minuteBox.Text != "")
-            {
-                hourIn = TimeSpan.ParseExact("00:" + minuteBox.Text, "hh\\:mm", CultureInfo.InvariantCulture);
-            }
-            //var diaFin = diaFinBox.SelectedDate.Value;
-            CarteleraFiltrada carteleraFiltrada = new CarteleraFiltrada(this, logica, genre, lang, diaIn, hourIn);
-            carteleraFiltrada.Show();
-            this.Hide();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,7 @@ namespace Peliculas
             logica.Filtrar(genre, lang, inDay, hourIn);
             filmsGrid.DataContext = logica;
             filmBox.DataContext = logica;
+            diaLbl.Content = inDay?.ToString("dd/MM/yyyy");
         }
 
         private void butCancelar_Click(object sender, RoutedEventArgs e)
@@ -42,7 +44,7 @@ namespace Peliculas
         private void butReservar_Click(object sender, RoutedEventArgs e)
         {
             Pelicula pelicula = (Pelicula)filmBox.SelectedItem;
-            SeatsWindow seatsWindow = new SeatsWindow(pelicula.diaFinal, pelicula.Hora, pelicula.Sala);
+            SeatsWindow seatsWindow = new SeatsWindow(DateTime.ParseExact((String)diaLbl.Content, "dd/MM/yyyy", CultureInfo.InvariantCulture), pelicula.Hora, pelicula.Sala);
         }
     }
 }
