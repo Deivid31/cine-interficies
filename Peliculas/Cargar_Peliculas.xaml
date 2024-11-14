@@ -6,7 +6,55 @@
         xmlns:local="clr-namespace:Peliculas"
         mc:Ignorable="d"
         Title="Cargar_Peliculas" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                        BorderBrush="{TemplateBinding BorderBrush}" 
+                        BorderThickness="1" 
+                        CornerRadius="3">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center" 
+                                      RecognizesAccessKey="True"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="DarkGray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
-        
+        <DataGrid x:Name="filmsGrid" ItemsSource="{Binding Path=listFilms}" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="353" Margin="192,10,0,0" VerticalAlignment="Top" Width="598" ColumnWidth="*">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Títol" Binding="{Binding Titulo}"/>
+                <DataGridTextColumn Header="Sala" Binding="{Binding Sala}"/>
+                <DataGridTextColumn Header="Idioma" Binding="{Binding Idioma}"/>
+                <DataGridTextColumn Header="Data inicial" Binding="{Binding diaInici, StringFormat=dd/MM/yy}"/>
+                <DataGridTextColumn Header="Data final" Binding="{Binding diaFinal, StringFormat=dd/MM/yy}"/>
+                <DataGridTextColumn Header="Hora" Binding="{Binding Hora, StringFormat=hh\\:mm}"/>
+                <DataGridTextColumn Header="Duració" Binding="{Binding Duracion}"/>
+                <DataGridComboBoxColumn Header="Gèneres" ItemsSource="{Binding Generos}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Genere" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="genreBox" ItemsSource="{Binding Path=listGenres}" HorizontalAlignment="Left" Height="30" Margin="10,41,0,0" VerticalAlignment="Top" Width="168"/>
+        <Label Content="Idioma" HorizontalAlignment="Left" Margin="11,92,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="langBox" ItemsSource="{Binding Path=listLanguages}" HorizontalAlignment="Left" Height="30" Margin="10,118,0,0" VerticalAlignment="Top" Width="169"/>
+        <Label Content="Dia inicial" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="diaInBox" HorizontalAlignment="Left" Margin="11,202,0,0" Width="148" Height="30" VerticalAlignment="Top"/>
+        <Label Content="Hora" HorizontalAlignment="Left" Margin="10,237,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="hourBox" ItemsSource="{Binding Path=listHours}" HorizontalAlignment="Left" Height="30" Margin="11,268,0,0" VerticalAlignment="Top" Width="51"/>
+        <ComboBox x:Name="minuteBox" ItemsSource="{Binding Path=listMinutes}" HorizontalAlignment="Left" Height="30" Margin="69,268,0,0" VerticalAlignment="Top" Width="51"/>
+        <Button x:Name="confirmarButton" Content="Añadir" HorizontalAlignment="Left" Height="41" Margin="11,338,0,0" VerticalAlignment="Top" Width="60" Click="filtButton_Click"/>
+        <Button x:Name="cleanButton" Content="Llimpiar" HorizontalAlignment="Left" Height="42" Margin="91,337,0,0" VerticalAlignment="Top" Width="68" Click="cleanButton_Click"/>
     </Grid>
 </Window>

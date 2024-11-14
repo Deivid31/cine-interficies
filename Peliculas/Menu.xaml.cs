@@ -41,6 +41,11 @@ namespace Peliculas
                 Cargar_Peliculas cargar = new Cargar_Peliculas();
                 cargar.ShowDialog();
             }
+            else if (num == 3)
+            {
+                MainWindow mainw = new MainWindow();
+                mainw.ShowDialog();
+            }
             else
             {
                 Cartelera cartelera = new Cartelera();
@@ -55,12 +60,12 @@ namespace Peliculas
 
         private void button_cerrar_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            AbrirNuevaVentana(3);
         }
 
         private void button_cargar_Click(object sender, RoutedEventArgs e)
         {
-            if (!x)
+            if (x == true)
             {
                 AbrirNuevaVentana(1);
             }
