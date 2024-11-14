@@ -28,10 +28,6 @@ namespace Peliculas
         {
             InitializeComponent();
         }
-        static async Task Esperar()
-        {
-            await Task.Delay(1000); 
-        }
         public bool EsCorreoValido(string email)
         {
             try
