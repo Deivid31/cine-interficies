@@ -55,6 +55,7 @@ namespace Peliculas
         {
             Menu nuevaVentana = new Menu(admin);
             
+            MainWindow1.Close();
             nuevaVentana.ShowDialog();
         }
         int seguidas = 0;

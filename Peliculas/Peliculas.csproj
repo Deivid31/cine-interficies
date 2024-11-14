@@ -40,6 +40,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -140,6 +141,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ruben.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="david.png" />
+    <Resource Include="izan.png" />
+    <Content Include="Resources\ruben.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\izan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\david.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -4,17 +4,17 @@
 exe
 C#
 .cs
-D:\Github\cine-interficies\cine-interficies\Peliculas\obj\Debug\
+C:\Users\admin\source\repos\cine-interficies\Peliculas\obj\Debug\
 Peliculas
 none
 false
 DEBUG;TRACE
-D:\Github\cine-interficies\cine-interficies\Peliculas\App.xaml
-7-2082381305
-
-14-1032423579
-13-1310406943
-AboutUs.xaml;Cargar_Peliculas.xaml;Cartelera.xaml;CarteleraFiltrada.xaml;MainWindow.xaml;Menu.xaml;seatsWindow.xaml;
+C:\Users\admin\source\repos\cine-interficies\Peliculas\App.xaml
+7302989628
+3-857136684
+14-1547833144
+14-1656046352
+Cargar_Peliculas.xaml;Cartelera.xaml;CarteleraFiltrada.xaml;MainWindow.xaml;Menu.xaml;seatsWindow.xaml;SecondWindow.xaml;
 
 True
 
