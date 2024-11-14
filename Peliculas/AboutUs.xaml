@@ -1,8 +1,11 @@
-﻿<Window
+﻿<Window x:Class="Peliculas.AboutUs"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:av="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="av" x:Class="YourNamespace.MainWindow"
-        Title="Información de la Aplicación" Height="500" Width="600">
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Peliculas"
+        mc:Ignorable="d"
+        Title="AboutUs" Height="450" Width="800">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="2*" />
@@ -34,8 +37,8 @@
             <TextBlock Text="Información de la Aplicación" FontSize="18" FontWeight="Bold" Margin="0,10,0,5" HorizontalAlignment="Center"/>
             <TextBlock Text="Aquí puedes añadir información detallada sobre la aplicación, su funcionalidad, sus características y cualquier otro detalle importante." TextWrapping="Wrap" Margin="10,5"/>
         </StackPanel>
-        <Label Content="Programador" HorizontalContentAlignment="Center" Margin="90,214,390,0" VerticalAlignment="Top" Width="100" FontSize="10"/>
-        <Label Content="Programador" HorizontalContentAlignment="Center" Margin="240,214,240,0" VerticalAlignment="Top" Width="100" FontSize="10"/>
-        <Label Content="Programador" HorizontalContentAlignment="Center" Margin="390,214,90,0" VerticalAlignment="Top" Width="100" FontSize="10"/>
+        <Label Content="Programador" HorizontalContentAlignment="Center" Margin="190,207,490,0" VerticalAlignment="Top" Width="100" FontSize="10"/>
+        <Label Content="Programador" HorizontalContentAlignment="Center" Margin="340,208,340,0" VerticalAlignment="Top" Width="100" FontSize="10"/>
+        <Label Content="Programador" HorizontalContentAlignment="Center" Margin="490,207,190,0" VerticalAlignment="Top" Width="100" FontSize="10"/>
     </Grid>
 </Window>

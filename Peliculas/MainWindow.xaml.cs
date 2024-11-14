@@ -50,8 +50,8 @@ namespace Peliculas
         private void AbrirNuevaVentana(Boolean admin)
         {
             Menu nuevaVentana = new Menu(admin);
-            
-            MainWindow1.Close();
+
+            MainWindow1.Hide();
             nuevaVentana.ShowDialog();
         }
         int seguidas = 0;
