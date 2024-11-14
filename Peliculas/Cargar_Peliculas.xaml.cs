@@ -29,6 +29,14 @@ namespace Peliculas
         public List<String> listLanguages { get; set; }
         public List<String> listHours { get; set; }
         public List<String> listMinutes { get; set; }
+        public ObservableCollection<String> Generos = new ObservableCollection<String>();
+        public string GenerosString
+        {
+            get
+            {
+                return string.Join(", ", Generos);
+            }
+        }
         public Cargar_Peliculas()
         {
             InitializeComponent();
@@ -71,11 +79,8 @@ namespace Peliculas
 
             }
         }
-
-        private void filtButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+       
+        
 
         private void cleanButton_Click(object sender, RoutedEventArgs e)
         {
@@ -84,6 +89,28 @@ namespace Peliculas
             diaInBox.SelectedDate = null;
             hourBox.SelectedItem = null;
             minuteBox.SelectedItem = null;
+            Generos.Clear();
+        }
+
+        private void confirmarButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void añadir_Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (genreBox.SelectedItem != null)
+            {
+                Generos.Add(genreBox.SelectedItem.ToString());
+
+                // Notificar que el texto de GenerosString debe ser actualizado
+                OnPropertyChanged(nameof(GenerosString));
+            }
+        }
+
+        private void limpiarGen_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Generos.Clear();
         }
     }
 }
