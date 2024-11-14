@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 namespace Peliculas
 {
     /// <summary>
-    /// Interaction logic for AboutUs.xaml
+    /// Lógica de interacción para AboutUs.xaml
     /// </summary>
     public partial class AboutUs : Window
     {
