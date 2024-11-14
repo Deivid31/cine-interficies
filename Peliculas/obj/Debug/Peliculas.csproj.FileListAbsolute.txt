@@ -58,3 +58,4 @@ C:\Users\admin\source\repos\cine-interficies\Peliculas\obj\Debug\Peliculas.exe
 C:\Users\admin\source\repos\cine-interficies\Peliculas\obj\Debug\Peliculas.pdb
 C:\Users\admin\source\repos\cine-interficies\Peliculas\obj\Debug\Cargar_Peliculas.g.cs
 C:\Users\admin\source\repos\cine-interficies\Peliculas\obj\Debug\Cargar_Peliculas.baml
+C:\Users\admin\source\repos\cine-interficies\Peliculas\obj\Debug\Peliculas_Content.g.cs

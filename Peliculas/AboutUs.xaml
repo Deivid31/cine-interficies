@@ -5,9 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Peliculas"
         mc:Ignorable="d"
-        Title="AboutUs" Height="450" Width="800">
+        Title="Sobre nosotros" Height="450" Width="560" ResizeMode="NoResize">
     <Grid>
-        <Image Height="80" Width="80" Margin="239,144,481,210"/>
+        <Rectangle Height="100" Width="100" Margin="65,64,395,270">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/ruben.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Height="100" Width="100" Margin="230,64,230,270">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/david.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Height="100" Width="100" Margin="395,64,65,270">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/izan.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
 
     </Grid>
 </Window>
