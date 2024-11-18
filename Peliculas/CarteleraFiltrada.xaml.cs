@@ -43,8 +43,15 @@ namespace Peliculas
 
         private void butReservar_Click(object sender, RoutedEventArgs e)
         {
-            Pelicula pelicula = (Pelicula)filmBox.SelectedItem;
-            SeatsWindow seatsWindow = new SeatsWindow(DateTime.ParseExact((String)diaLbl.Content, "dd/MM/yyyy", CultureInfo.InvariantCulture), pelicula.Hora, pelicula.Sala);
+            if (filmBox.SelectedItem != null)
+            {
+                Pelicula pelicula = (Pelicula)filmBox.SelectedItem;
+                SeatsWindow seatsWindow = new SeatsWindow(DateTime.ParseExact((String)diaLbl.Content, "dd/MM/yyyy", CultureInfo.InvariantCulture), pelicula.Hora, pelicula.Sala);
+            }
+            else
+            {
+                MessageBox.Show("Selecciona una pelicula para hacer la reserva", "Pelicula faltante", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
     }
 }

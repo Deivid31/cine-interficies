@@ -31,5 +31,7 @@ namespace Peliculas.Objetos
         {
             return Titulo + " - " + Hora.ToString("hh\\:mm");
         }
+
+        public string GenerosFormatted => string.Join(", ", Generos);
     }
 }

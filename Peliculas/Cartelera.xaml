@@ -31,9 +31,12 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style TargetType="DataGridCell">
+            <Setter Property="TextBlock.TextAlignment" Value="Right" />
+        </Style>
     </Window.Resources>
     <Grid>
-        <DataGrid x:Name="filmsGrid" ItemsSource="{Binding Path=listFilms}" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="353" Margin="192,10,0,0" VerticalAlignment="Top" Width="598" ColumnWidth="*">
+        <DataGrid x:Name="filmsGrid" ItemsSource="{Binding Path=listFilms}" IsReadOnly="True" AutoGenerateColumns="False" Margin="200,10,19,0" ColumnWidth="*" Height="369" VerticalAlignment="Top">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Títol" Binding="{Binding Titulo}"/>
                 <DataGridTextColumn Header="Sala" Binding="{Binding Sala}"/>
@@ -42,7 +45,7 @@
                 <DataGridTextColumn Header="Data final" Binding="{Binding diaFinal, StringFormat=dd/MM/yy}"/>
                 <DataGridTextColumn Header="Hora" Binding="{Binding Hora, StringFormat=hh\\:mm}"/>
                 <DataGridTextColumn Header="Duració" Binding="{Binding Duracion}"/>
-                <DataGridComboBoxColumn Header="Gèneres" ItemsSource="{Binding Generos}"/>
+                <DataGridTextColumn Header="Gèneres" Binding="{Binding GenerosFormatted}" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Genere" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
@@ -54,8 +57,9 @@
         <Label Content="Hora" HorizontalAlignment="Left" Margin="10,237,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="hourBox" ItemsSource="{Binding Path=listHours}" HorizontalAlignment="Left" Height="30" Margin="11,268,0,0" VerticalAlignment="Top" Width="51"/>
         <ComboBox x:Name="minuteBox" ItemsSource="{Binding Path=listMinutes}" HorizontalAlignment="Left" Height="30" Margin="69,268,0,0" VerticalAlignment="Top" Width="51"/>
-        <Button x:Name="filtButton" Content="Filtrar" HorizontalAlignment="Left" Height="41" Margin="11,338,0,0" VerticalAlignment="Top" Width="60" Click="filtButton_Click"/>
+        <Button x:Name="filtButton" Content="Filtrar" HorizontalAlignment="Left" Height="41" Margin="11,338,0,0" VerticalAlignment="Top" Width="68" Click="filtButton_Click"/>
         <Button x:Name="cleanButton" Content="Llimpiar" HorizontalAlignment="Left" Height="42" Margin="91,337,0,0" VerticalAlignment="Top" Width="68" Click="cleanButton_Click"/>
+        <Button x:Name="closeButton" Content="Tancar" HorizontalAlignment="Left" Height="42" Margin="69,382,0,0" VerticalAlignment="Top" Width="50" Click="closeButton_Click"/>
         <Border BorderBrush="Black" BorderThickness="1"/>
     </Grid>
 </Window>

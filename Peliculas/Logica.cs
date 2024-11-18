@@ -25,7 +25,7 @@ namespace Peliculas
 
         public void Filtrar(String genre, String lang, DateTime? dayIn, TimeSpan? hourIn)
         {
-            filtFilms = new ObservableCollection<Pelicula>(listFilms); ;
+            filtFilms = new ObservableCollection<Pelicula>(listFilms);
             if (!string.IsNullOrEmpty(genre))
             {
                 filtFilms = new ObservableCollection<Pelicula>(filtFilms.Where(p => p.Generos.Contains(genre)));
@@ -34,14 +34,11 @@ namespace Peliculas
             {
                 filtFilms = new ObservableCollection<Pelicula>(filtFilms.Where(p => p.Idioma == lang));
             }
-            if (dayIn.HasValue)
-            {
-                filtFilms = new ObservableCollection<Pelicula>(filtFilms.Where(p => p.diaInici <= dayIn && dayIn <= p.diaFinal));
-            }
             if (hourIn.HasValue)
             {
                 filtFilms = new ObservableCollection<Pelicula>(filtFilms.Where(p => p.Hora == hourIn));
             }
+            filtFilms = new ObservableCollection<Pelicula>(filtFilms.Where(p => p.diaInici <= dayIn && dayIn <= p.diaFinal));
             /*
             foreach (Pelicula pelicula in listFilms)
             {

@@ -77,5 +77,10 @@ namespace Peliculas
                 MessageBox.Show("Es necesario introducir el dia de la pelicula", "Fecha faltante", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
+
+        private void closeButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
