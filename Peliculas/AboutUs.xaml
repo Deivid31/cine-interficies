@@ -33,9 +33,9 @@
         </StackPanel>
 
 
-        <StackPanel Grid.Row="1" Margin="10" VerticalAlignment="Top">
+        <StackPanel Grid.Row="1" Margin="190,10,190,0" VerticalAlignment="Top" Height="87">
             <TextBlock Text="Información de la Aplicación" FontSize="18" FontWeight="Bold" Margin="0,10,0,5" HorizontalAlignment="Center"/>
-            <TextBlock Text="Aquí puedes añadir información detallada sobre la aplicación, su funcionalidad, sus características y cualquier otro detalle importante." TextWrapping="Wrap" Margin="10,5"/>
+            <TextBlock TextWrapping="Wrap" Margin="10,5" TextAlignment="Center" Height="36"><Run Text="V"/><Run Text="ersión:"/><Run Text=" "/><Run Text="0."/><Run Text="3.3"/></TextBlock>
         </StackPanel>
         <Label Content="Programador" HorizontalContentAlignment="Center" Margin="190,207,490,0" VerticalAlignment="Top" Width="100" FontSize="10"/>
         <Label Content="Programador" HorizontalContentAlignment="Center" Margin="340,208,340,0" VerticalAlignment="Top" Width="100" FontSize="10"/>
