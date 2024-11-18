@@ -16,3 +16,6 @@ xd@xd.xd|xd
 a.a@a.com|1234
 lol@lol.com|lol
 admin@admin.com|admin
+asd@dsa.com|0000
+zxc@zxc.com|0000
+yui@yui.com|0000

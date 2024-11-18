@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Peliculas.Objetos;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace Peliculas
     public partial class MainWindow : Window
     {
         string path = "./../../../usuarios.txt";
+        DBUser db = new DBUser();
         
         public MainWindow()
         {
@@ -111,6 +113,7 @@ namespace Peliculas
                         {
                             writer.WriteLine(txtBox_correo.Text + "|" + PassBox.Password);
                         }
+                        db.addUser(txtBox_correo.Text, PassBox.Password);
                         MessageBox.Show("Los datos introducidos son válidos para un registro, bienvenido.", "Datos Registro", MessageBoxButton.OK, MessageBoxImage.Information);
                         seguidas = 0;
                         AbrirNuevaVentana(false);
