@@ -44,6 +44,7 @@ namespace Peliculas
             else if (num == 3)
             {
                 MainWindow mainw = new MainWindow();
+                this.Close();
                 mainw.ShowDialog();
             }
             else

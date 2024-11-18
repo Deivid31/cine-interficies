@@ -111,14 +111,30 @@ namespace Peliculas
         {
             if (genreBox.SelectedItem != null)
             {
-                Generos.Add(genreBox.SelectedItem.ToString());
-                genres_Label.Content = GenerosString;
+                if (Generos.Count < 3)
+                {
+                    if (!Generos.Contains(genreBox.SelectedItem.ToString()))
+                    {
+                        Generos.Add(genreBox.SelectedItem.ToString());
+                        Genres_TxtB.Text = GenerosString;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ese género ya está en la lista.", "Error de Género", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                    
+                }
+                else
+                {
+                    MessageBox.Show("Como máximo tienes permitido añadir 3 géneros", "Error de Género", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
         }
 
         private void limpiarGen_Button_Click(object sender, RoutedEventArgs e)
         {
             Generos.Clear();
+            Genres_TxtB.Text = GenerosString;
         }
     }
 }
