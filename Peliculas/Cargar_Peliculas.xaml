@@ -47,17 +47,17 @@
         </DataGrid>
         <Label Content="Genere" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="genreBox" ItemsSource="{Binding Path=listGenres}" HorizontalAlignment="Left" Height="30" Margin="10,41,0,0" VerticalAlignment="Top" Width="168"/>
-        <Label Content="Idioma" HorizontalAlignment="Left" Margin="13,138,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="langBox" ItemsSource="{Binding Path=listLanguages}" HorizontalAlignment="Left" Height="30" Margin="9,169,0,0" VerticalAlignment="Top" Width="169"/>
-        <Label Content="Dia inicial" HorizontalAlignment="Left" Margin="11,0,0,0" VerticalAlignment="Center"/>
-        <DatePicker x:Name="diaInBox" HorizontalAlignment="Left" Margin="11,237,0,0" Width="148" Height="30" VerticalAlignment="Top"/>
-        <Label Content="Hora" HorizontalAlignment="Left" Margin="11,267,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="hourBox" ItemsSource="{Binding Path=listHours}" HorizontalAlignment="Left" Height="30" Margin="11,298,0,0" VerticalAlignment="Top" Width="51"/>
-        <ComboBox x:Name="minuteBox" ItemsSource="{Binding Path=listMinutes}" HorizontalAlignment="Left" Height="30" Margin="68,297,0,0" VerticalAlignment="Top" Width="52"/>
-        <Button x:Name="confirmarButton" Content="Añadir" HorizontalAlignment="Left" Height="41" Margin="10,358,0,0" VerticalAlignment="Top" Width="60" Click="confirmarButton_Click"/>
-        <Button x:Name="cleanButton" Content="Llimpiar" HorizontalAlignment="Left" Height="42" Margin="85,358,0,0" VerticalAlignment="Top" Width="68" Click="cleanButton_Click"/>
-        <Button x:Name="añadir_Button" Content="Añadir género" HorizontalAlignment="Left" Height="23" Margin="9,115,0,0" VerticalAlignment="Top" Width="82" Click="añadir_Button_Click"/>
-        <Button x:Name="limpiarGen_Button" Content="Llimpiar géneros" HorizontalAlignment="Left" Height="23" Margin="94,115,0,0" VerticalAlignment="Top" Width="93" Click="limpiarGen_Button_Click" />
-        <Label x:Name="genres_Label" Content="" HorizontalAlignment="Left" Margin="11,76,0,0" VerticalAlignment="Top" Width="167"/>
+        <Label Content="Idioma" HorizontalAlignment="Left" Margin="14,159,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="langBox" ItemsSource="{Binding Path=listLanguages}" HorizontalAlignment="Left" Height="30" Margin="10,190,0,0" VerticalAlignment="Top" Width="169"/>
+        <Label Content="Dia inicial" HorizontalAlignment="Left" Margin="12,225,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="diaInBox" HorizontalAlignment="Left" Margin="12,258,0,0" Width="148" Height="30" VerticalAlignment="Top"/>
+        <Label Content="Hora" HorizontalAlignment="Left" Margin="12,288,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="hourBox" ItemsSource="{Binding Path=listHours}" HorizontalAlignment="Left" Height="30" Margin="12,319,0,0" VerticalAlignment="Top" Width="51"/>
+        <ComboBox x:Name="minuteBox" ItemsSource="{Binding Path=listMinutes}" HorizontalAlignment="Left" Height="30" Margin="69,318,0,0" VerticalAlignment="Top" Width="52"/>
+        <Button x:Name="confirmarButton" Content="Añadir" HorizontalAlignment="Left" Height="41" Margin="11,379,0,0" VerticalAlignment="Top" Width="60" Click="confirmarButton_Click"/>
+        <Button x:Name="cleanButton" Content="Llimpiar" HorizontalAlignment="Left" Height="42" Margin="86,379,0,0" VerticalAlignment="Top" Width="68" Click="cleanButton_Click"/>
+        <Button x:Name="añadir_Button" Content="Añadir género" HorizontalAlignment="Left" Height="23" Margin="10,136,0,0" VerticalAlignment="Top" Width="82" Click="añadir_Button_Click"/>
+        <Button x:Name="limpiarGen_Button" Content="Llimpiar géneros" HorizontalAlignment="Left" Height="23" Margin="95,136,0,0" VerticalAlignment="Top" Width="93" Click="limpiarGen_Button_Click" />
+        <Label x:Name="genres_Label" Content="" HorizontalAlignment="Left" Margin="11,76,0,0" VerticalAlignment="Top" Width="167" Height="55"/>
     </Grid>
 </Window>

@@ -29,12 +29,22 @@ namespace Peliculas
         public List<String> listLanguages { get; set; }
         public List<String> listHours { get; set; }
         public List<String> listMinutes { get; set; }
-        public ObservableCollection<String> Generos = new ObservableCollection<String>();
+        public ObservableCollection<string> Generos = new ObservableCollection<string>();
         public string GenerosString
         {
-            get
-            {
-                return string.Join(", ", Generos);
+            get { 
+                String generos = "";
+                for (int i = 0; i < Generos.Count; i++)
+                {
+                    if (i != Generos.Count - 1){
+                        generos += Generos[i];
+                        generos += ", ";
+                    }else{
+                        generos += Generos[i];
+                    }
+                    
+                }
+                return generos; 
             }
         }
         public Cargar_Peliculas()
@@ -102,9 +112,7 @@ namespace Peliculas
             if (genreBox.SelectedItem != null)
             {
                 Generos.Add(genreBox.SelectedItem.ToString());
-
-                // Notificar que el texto de GenerosString debe ser actualizado
-                OnPropertyChanged(nameof(GenerosString));
+                genres_Label.Content = GenerosString;
             }
         }
 
