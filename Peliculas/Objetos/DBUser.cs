@@ -8,7 +8,7 @@ using MySqlConnector;
 
 namespace Peliculas.Objetos
 {
-    internal class DBReader
+    internal class DBUser
     {
         private String Host = "localhost";
         private String User = "root";
@@ -19,6 +19,7 @@ namespace Peliculas.Objetos
         private MySqlCommand ConnectDB()
         {
             MySqlConnection c = new MySqlConnection("host=" + Host + ";user=" + User + ";password=" + passwd + ";database=" + db + ";");
+            c.Open();
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = c;
             return cmd;
@@ -27,9 +28,10 @@ namespace Peliculas.Objetos
         public void addUser(String mail, String passwd)
         {
             MySqlCommand cmd = ConnectDB();
-            cmd.CommandText = "INSERT INTO user (mail, passwd) VALUES ('?mail', '?passwd');";
-            cmd.Parameters.Add("?mail", MySqlDbType.VarChar);
-            cmd.Parameters.Add("?passwd", MySqlDbType.VarChar);
+            cmd.CommandText = "INSERT INTO user (mail, passwd) VALUES (?mail, ?passwd);";
+
+            cmd.Parameters.Add("?mail", MySqlDbType.VarChar).Value = mail;
+            cmd.Parameters.Add("?passwd", MySqlDbType.VarChar).Value = passwd;
 
             cmd.ExecuteNonQuery();
         }
