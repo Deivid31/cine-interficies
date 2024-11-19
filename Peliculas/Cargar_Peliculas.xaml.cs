@@ -30,6 +30,7 @@ namespace Peliculas
         public List<String> listHours { get; set; }
         public List<String> listMinutes { get; set; }
         public List<String> listDuration { get; set; }
+        public List<int> listSala { get; set; }
         public ObservableCollection<string> Generos = new ObservableCollection<string>();
         public string GenerosString
         {
@@ -57,6 +58,7 @@ namespace Peliculas
             listLanguages = new List<String> { "V.O", "Castellano" };
             listHours = new List<String> { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" };
             listMinutes = new List<String> { "00", "15", "30", "45" };
+            listSala = new List<int> { 1, 2, 3 };
             listDuration = new List<String> { "30", "60", "90", "120", "150", "180", "210" };
             this.DataContext = this;
             filmsGrid.DataContext = logica;
@@ -106,37 +108,45 @@ namespace Peliculas
 
         private void confirmarButton_Click(object sender, RoutedEventArgs e)
         {
-            // Verifica si los campos necesarios están completos
-            if (!string.IsNullOrWhiteSpace(langBox.Text) &&
+            if (!string.IsNullOrWhiteSpace(titulo_txtBox.Text) &&
+                salaBox.SelectedItem != null &&
+                !string.IsNullOrWhiteSpace(langBox.Text) &&
                 diaInBox.SelectedDate.HasValue &&
                 hourBox.SelectedItem != null &&
                 minuteBox.SelectedItem != null &&
                 durationBox.SelectedItem != null &&
                 Generos.Count > 0)
             {
-                
-                string titulo = "Nuevo Titulo"; 
-                int sala = 1; 
-                string idioma = langBox.SelectedItem.ToString();
-                DateTime diaInici = diaInBox.SelectedDate.Value;
-                DateTime diaFinal = diaInBox.SelectedDate.Value.AddDays(28); 
-                TimeSpan hora = new TimeSpan(int.Parse(hourBox.SelectedItem.ToString()), int.Parse(minuteBox.SelectedItem.ToString()), 0);
-                int duracion = int.Parse(durationBox.SelectedItem.ToString());
-                List<string> generos = Generos.ToList();
+                try
+                {
+                    string titulo = titulo_txtBox.Text;
+                    int sala = int.Parse(salaBox.SelectedItem.ToString());
+                    string idioma = langBox.SelectedItem.ToString();
+                    DateTime diaInici = diaInBox.SelectedDate.Value;
+                    DateTime diaFinal = diaInBox.SelectedDate.Value.AddDays(28);
+                    TimeSpan hora = new TimeSpan(int.Parse(hourBox.SelectedItem.ToString()), int.Parse(minuteBox.SelectedItem.ToString()), 0);
+                    int duracion = int.Parse(durationBox.SelectedItem.ToString());
+                    List<string> generos = Generos.ToList();
 
-                Pelicula nuevaPelicula = new Pelicula(titulo, sala, idioma, diaInici, diaFinal, hora, duracion, generos);
+                    Pelicula nuevaPelicula = new Pelicula(titulo, sala, idioma, diaInici, diaFinal, hora, duracion, generos);
 
-                listFilms.Add(nuevaPelicula);
+                    listFilms.Add(nuevaPelicula);
 
-                cleanButton_Click(sender, e);
+                    cleanButton_Click(sender, e);
 
-                MessageBox.Show("Película añadida con éxito.", "Confirmación", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Película añadida con éxito.", "Confirmación", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ha ocurrido un error al añadir la película: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             else
             {
                 MessageBox.Show("Por favor, completa todos los campos antes de añadir una película.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
 
 
         private void añadir_Button_Click(object sender, RoutedEventArgs e)
