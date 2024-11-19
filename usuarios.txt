@@ -20,3 +20,4 @@ asd@dsa.com|0000
 zxc@zxc.com|0000
 yui@yui.com|0000
 user@user.com|user
+yui@yui.com|yui

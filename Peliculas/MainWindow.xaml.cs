@@ -23,7 +23,6 @@ namespace Peliculas
     /// </summary>
     public partial class MainWindow : Window
     {
-        string path = "./../../../usuarios.txt";
         DBMachine db = new DBMachine();
         int seguidas = 0;
 
@@ -35,8 +34,12 @@ namespace Peliculas
         {
             try
             {
-                var direccionCorreo = new MailAddress(email);
-                return true;
+                if (!string.IsNullOrEmpty(email))
+                {
+                    var direccionCorreo = new MailAddress(email);
+                    return true;
+                }
+                return false;
             }
             catch (FormatException)
             {
@@ -48,7 +51,6 @@ namespace Peliculas
         {
             txtBox_correo.Clear();
             PassBox.Clear();
-            Label_result.Content = Directory.GetCurrentDirectory();
         }
         private void AbrirNuevaVentana(Boolean admin)
         {
@@ -89,10 +91,6 @@ namespace Peliculas
                     }
                     else
                     {
-                        using (StreamWriter writer = new StreamWriter(path, append: true))
-                        {
-                            writer.WriteLine(txtBox_correo.Text + "|" + PassBox.Password);
-                        }
                         db.addUser(txtBox_correo.Text, PassBox.Password);
                         MessageBox.Show("Los datos introducidos son válidos para un registro, bienvenido.", "Datos Registro", MessageBoxButton.OK, MessageBoxImage.Information);
                         seguidas = 0;
@@ -103,6 +101,8 @@ namespace Peliculas
                 else
                 {
                     seguidas++;
+                    txtBox_correo.Clear();
+                    PassBox.Clear();
                     MessageBox.Show("La contraseña debe ser mayor a 3 caracteres y el correo debe ser válido.", "Error Registro/Inicio sesión", MessageBoxButton.OK, MessageBoxImage.Warning);
                     if (seguidas == 3) { 
                         this.Close();

@@ -6,6 +6,79 @@
         xmlns:local="clr-namespace:Peliculas"
         mc:Ignorable="d"
         Title="LoginWindow" Height="450" Width="800" ResizeMode="NoResize">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="1" 
+                            CornerRadius="3">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center" 
+                                          RecognizesAccessKey="True"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="Gray"/>
+                                <Setter Property="Background" Value="DarkRed"/>
+                                <Setter Property="Cursor" Value="Arrow"/>
+                            </Trigger>
+
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="DarkGray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border CornerRadius="5" 
+                                BorderBrush="Black" 
+                                BorderThickness="1" 
+                                Background="{TemplateBinding Background}">
+                            <ScrollViewer Margin="0" x:Name="PART_ContentHost"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="PasswordBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PasswordBox">
+                        <Border CornerRadius="5" 
+                                BorderBrush="Black" 
+                                BorderThickness="1" 
+                                Background="{TemplateBinding Background}">
+                            <ScrollViewer Margin="0" x:Name="PART_ContentHost"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    
+    
+    
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFD1F7F7"/>
+            <GradientStop Color="#FFF2F2F2" Offset="1"/>
+            <GradientStop Color="White"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -15,12 +88,12 @@
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Rectangle Grid.Column="1" HorizontalAlignment="Center" Height="330" Stroke="Black" VerticalAlignment="Top" Width="624" Margin="0,41,0,0" Grid.RowSpan="2"/>
-        <Label x:Name="Label_inicio" Content="Página de inicio de sesión" HorizontalAlignment="Center" Margin="0,69,0,0" VerticalAlignment="Top" Grid.Column="1" Width="276" Height="40" FontSize="22" FontWeight="Bold"/>
+        <Rectangle RadiusX="5" RadiusY="5" Grid.Column="1" HorizontalAlignment="Center" Height="330" Stroke="Black" VerticalAlignment="Top" Width="624" Margin="0,41,0,0" Grid.RowSpan="2"/>
+        <Label x:Name="Label_inicio" Content="Inicio de sesión" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="0,71,0,0" VerticalAlignment="Top" Grid.Column="1" Width="264" Height="55" FontSize="30" FontWeight="Bold"/>
         <Label x:Name="label_correo" Content="Correo electrónico:" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="262,154,0,0" VerticalAlignment="Top" Height="26" Width="116" FontWeight="Bold"/>
-        <TextBox x:Name="txtBox_correo" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="392,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="26"/>
+        <TextBox x:Name="txtBox_correo" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="200" Height="26" Margin="400,154,0,0" BorderThickness="1.5,1.5,1.5,1.5"/>
         <Label x:Name="label_pass" Content="Contraseña:" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="303,217,0,0" VerticalAlignment="Top" Height="26" Width="75" Grid.RowSpan="2" FontWeight="Bold"/>
-        <PasswordBox x:Name="PassBox" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="392,217,0,0" VerticalAlignment="Top" Width="200" Height="26" Grid.RowSpan="2"/>
+        <PasswordBox x:Name="PassBox" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="200" Height="26" Grid.ColumnSpan="2" Margin="400,217,0,0" Grid.RowSpan="2" BorderThickness="1.5,1.5,1.5,1.5"/>
         <Button x:Name="button_borrar" Content="Borra todo" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="216,104,0,0" Grid.Row="1" VerticalAlignment="Top" Width="104" Height="30" RenderTransformOrigin="0.841,1.001" Click="button_borrar_Click" IsCancel="True"/>
         <Button x:Name="button_confirmar" Content="Confirmar" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="452,104,0,0" Grid.Row="1" VerticalAlignment="Top" Width="104" Height="30" RenderTransformOrigin="0.841,1.001" Click="button_confirmar_Click" IsDefault="True"/>
         <Label x:Name="Label_result" Content="" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="0,48,0,0" Grid.Row="1" VerticalAlignment="Top" Width="510" FontSize="16" FontFamily="Arial" Grid.Column="1"/>
