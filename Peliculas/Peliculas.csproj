@@ -107,7 +107,7 @@
     <Compile Include="Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Objetos\DBUser.cs" />
+    <Compile Include="Objetos\DBMachine.cs" />
     <Compile Include="Objetos\Pelicula.cs" />
     <Compile Include="seatsWindow.xaml.cs">
       <DependentUpon>seatsWindow.xaml</DependentUpon>

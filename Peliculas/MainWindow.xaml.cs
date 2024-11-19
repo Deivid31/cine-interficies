@@ -24,8 +24,9 @@ namespace Peliculas
     public partial class MainWindow : Window
     {
         string path = "./../../../usuarios.txt";
-        DBUser db = new DBUser();
-        
+        DBMachine db = new DBMachine();
+        int seguidas = 0;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -56,42 +57,21 @@ namespace Peliculas
             MainWindow1.Hide();
             nuevaVentana.ShowDialog();
         }
-        int seguidas = 0;
+        
         private async void button_confirmar_Click(object sender, RoutedEventArgs e)
         {
-            List<string> correos = new List<string>();
-            List<string> contraseñas = new List<string>();
-            string[] lineas = File.ReadAllLines(path);
-
-            foreach (string linea in lineas)
-            {
-                if (linea.Contains('|'))
-                {
-                    string[] separa = linea.Split('|');
-                    correos.Add(separa[0]);
-                    contraseñas.Add(separa[1]);
-                }
-            }
             if (seguidas != 3)
             {
                 if (EsCorreoValido(txtBox_correo.Text) && PassBox.Password.Length >= 3)
                 {
 
-                    if (correos.Contains(txtBox_correo.Text))
+                    if (db.userExist(txtBox_correo.Text))
                     {
-                        int pos = 0;
-                        for (int i = 0; i < correos.Count; i++)
-                        {
-                            if (correos[i] == txtBox_correo.Text)
-                            {
-                                pos = i; break;
-                            }
-                        }
-                        if (contraseñas[pos].Equals(PassBox.Password))
+                        if (db.checkUser(txtBox_correo.Text, PassBox.Password))
                         {
                             MessageBox.Show("Contraseña correcta, bienvenido de nuevo.", "Datos inicio de sesión", MessageBoxButton.OK, MessageBoxImage.Information);
                             seguidas = 0;
-                            if (txtBox_correo.Text.Equals("admin@admin.com"))
+                            if (db.isAdmin(txtBox_correo.Text))
                             {
                                 AbrirNuevaVentana(true);
                             }
