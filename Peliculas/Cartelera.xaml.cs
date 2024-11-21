@@ -37,6 +37,7 @@ namespace Peliculas
             listMinutes = new List<String> { "00", "15", "30", "45" };
             this.DataContext = this;
             filmsGrid.DataContext = logica;
+            diaInBox.SelectedDate = DateTime.Now;
         }
 
 
