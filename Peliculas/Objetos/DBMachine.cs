@@ -97,5 +97,49 @@ namespace Peliculas.Objetos
             cmd.Connection.Close();
             return false;
         }
+        public List<Pelicula> take_Films()
+        {
+            List<Pelicula> films = new List<Pelicula>();
+            MySqlCommand cmd = ConnectDB();
+            cmd.CommandText = @"
+        SELECT f.film_id, f.title, f.room, l.name AS language, f.start_date, f.end_date, f.hour, f.duration, g.name AS genre 
+        FROM film f
+        JOIN language l ON f.language_id = l.language_id
+        JOIN `film-genre` fg ON f.film_id = fg.film_id
+        JOIN genre g ON fg.genre_id = g.genre_id";
+
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            Dictionary<int, Pelicula> peliculasDict = new Dictionary<int, Pelicula>();
+
+            while (reader.Read())
+            {
+                int filmId = reader.GetInt32("film_id");
+
+                if (!peliculasDict.ContainsKey(filmId))
+                {
+                    Pelicula pelicula = new Pelicula
+                    (
+                        reader.GetString("title"),
+                        reader.GetInt32("room"),
+                        reader.GetString("language"),
+                        reader.GetDateTime("start_date"),
+                        reader.GetDateTime("end_date"),
+                        reader.GetTimeSpan("hour"),
+                        reader.GetInt32("duration"),
+                        new List<string>()
+                    );
+                    peliculasDict[filmId] = pelicula;
+                }
+
+                peliculasDict[filmId].Generos.Add(reader.GetString("genre"));
+            }
+
+            reader.Close();
+            cmd.Connection.Close();
+
+            return peliculasDict.Values.ToList();
+        }
+        
     }
 }
