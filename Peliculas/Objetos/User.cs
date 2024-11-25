@@ -12,6 +12,12 @@ namespace Peliculas.Objetos
         public String passwd { get; set; }
         public bool admin { get; set; }
 
+
+        public User()
+        {
+        }
+
+
         public User(String input1, String input2) {
             mail = input1;
             passwd = input2;

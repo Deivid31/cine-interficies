@@ -25,6 +25,7 @@ namespace Peliculas
     {
         DBMachine db = new DBMachine();
         int seguidas = 0;
+        User userBinding;
 
         public MainWindow()
         {
@@ -47,6 +48,12 @@ namespace Peliculas
             }
         }
 
+        private void RefreshUsrAndContent() {
+            userBinding = new User();
+            txtBox_correo.DataContext = userBinding;
+            PassBox.DataContext = txtBox_correo;
+        }
+
         private void button_borrar_Click(object sender, RoutedEventArgs e)
         {
             txtBox_correo.Clear();
@@ -66,14 +73,13 @@ namespace Peliculas
             {
                 if (EsCorreoValido(txtBox_correo.Text) && PassBox.Password.Length >= 3)
                 {
-                    User user = new User(txtBox_correo.Text, PassBox.Password);
-                    if (db.userExist(user))
+                    if (db.userExist(userBinding))
                     {
-                        if (db.checkUser(user))
+                        if (db.checkUser(userBinding))
                         {
                             MessageBox.Show("Contraseña correcta, bienvenido de nuevo.", "Datos inicio de sesión", MessageBoxButton.OK, MessageBoxImage.Information);
                             seguidas = 0;
-                            if (db.isAdmin(user))
+                            if (db.isAdmin(userBinding))
                             {
                                 AbrirNuevaVentana(true);
                             }
@@ -92,7 +98,7 @@ namespace Peliculas
                     else
                     {
                         
-                        db.addUser(user);
+                        db.addUser(userBinding);
                         MessageBox.Show("Los datos introducidos son válidos para un registro, bienvenido.", "Datos Registro", MessageBoxButton.OK, MessageBoxImage.Information);
                         seguidas = 0;
                         AbrirNuevaVentana(false);
