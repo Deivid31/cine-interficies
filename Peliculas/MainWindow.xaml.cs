@@ -50,14 +50,14 @@ namespace Peliculas
 
         private void RefreshUsrAndContent() {
             userBinding = new User();
-            txtBox_correo.DataContext = userBinding;
-            PassBox.DataContext = txtBox_correo;
+            txtBox_correo.Text = userBinding.mail;
+            txtBox_contra.Text = userBinding.passwd;
         }
 
         private void button_borrar_Click(object sender, RoutedEventArgs e)
         {
             txtBox_correo.Clear();
-            PassBox.Clear();
+            txtBox_contra.Clear();
         }
         private void AbrirNuevaVentana(Boolean admin)
         {
@@ -71,7 +71,7 @@ namespace Peliculas
         {
             if (seguidas != 3)
             {
-                if (EsCorreoValido(txtBox_correo.Text) && PassBox.Password.Length >= 3)
+                if (EsCorreoValido(txtBox_correo.Text) && txtBox_contra.Text.Length >= 3)
                 {
                     if (db.userExist(userBinding))
                     {
@@ -109,7 +109,7 @@ namespace Peliculas
                 {
                     seguidas++;
                     txtBox_correo.Clear();
-                    PassBox.Clear();
+                    txtBox_contra.Clear();
                     MessageBox.Show("La contraseña debe ser mayor a 3 caracteres y el correo debe ser válido.", "Error Registro/Inicio sesión", MessageBoxButton.OK, MessageBoxImage.Warning);
                     if (seguidas == 3) { 
                         this.Close();
