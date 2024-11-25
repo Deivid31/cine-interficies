@@ -17,7 +17,7 @@ namespace Peliculas.Objetos
         private String db = "cine_interficies";
 
 
-        private MySqlCommand ConnectDB()
+        public MySqlCommand ConnectDB()
         {
             MySqlConnection c = new MySqlConnection("host=" + Host + ";user=" + User + ";password=" + passwd + ";database=" + db + ";");
             c.Open();
@@ -26,24 +26,24 @@ namespace Peliculas.Objetos
             return cmd;
         }
 
-        public void addUser(String mail, String passwd)
+        public void addUser(User user)
         {
             MySqlCommand cmd = ConnectDB();
             cmd.CommandText = "INSERT INTO user (mail, passwd) VALUES (?mail, ?passwd);";
 
-            cmd.Parameters.Add("?mail", MySqlDbType.VarChar).Value = mail;
-            cmd.Parameters.Add("?passwd", MySqlDbType.VarChar).Value = passwd;
+            cmd.Parameters.Add("?mail", MySqlDbType.VarChar).Value = user.mail;
+            cmd.Parameters.Add("?passwd", MySqlDbType.VarChar).Value = user.passwd;
 
             cmd.ExecuteNonQuery();
             cmd.Connection.Close();
         }
 
-        public bool userExist(String mail)
+        public bool userExist(User user)
         {
             MySqlCommand cmd = ConnectDB();
             cmd.CommandText = "SELECT * FROM user WHERE mail = ?mail;";
 
-            cmd.Parameters.Add("?mail", MySqlDbType.VarChar).Value = mail;
+            cmd.Parameters.Add("?mail", MySqlDbType.VarChar).Value = user.mail;
 
             MySqlDataReader reader = cmd.ExecuteReader();
             
@@ -57,13 +57,13 @@ namespace Peliculas.Objetos
             return false;
         }
 
-        public bool checkUser(String mail, String passwd)
+        public bool checkUser(User user)
         {
             MySqlCommand cmd = ConnectDB();
             cmd.CommandText = "SELECT * FROM user WHERE mail = ?mail AND passwd = ?passwd;";
 
-            cmd.Parameters.Add("?mail", MySqlDbType.VarChar).Value = mail;
-            cmd.Parameters.Add("?passwd", MySqlDbType.VarChar).Value = passwd;
+            cmd.Parameters.Add("?mail", MySqlDbType.VarChar).Value = user.mail;
+            cmd.Parameters.Add("?passwd", MySqlDbType.VarChar).Value = user.passwd;
 
             MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -77,13 +77,12 @@ namespace Peliculas.Objetos
             return false;
         }
 
-        public bool isAdmin(String mail)
+        public bool isAdmin(User user)
         {
             MySqlCommand cmd = ConnectDB();
             cmd.CommandText = "SELECT rol FROM user WHERE mail = ?mail";
 
-            cmd.Parameters.Add("?mail", MySqlDbType.VarChar).Value = mail;
-            cmd.Parameters.Add("?passwd", MySqlDbType.VarChar).Value = passwd;
+            cmd.Parameters.Add("?mail", MySqlDbType.VarChar).Value = user.mail;
 
             MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -92,53 +91,57 @@ namespace Peliculas.Objetos
             if (reader.GetString("rol") == "admin")
             {
                 cmd.Connection.Close();
+                user.admin = true;
                 return true;
             }
             cmd.Connection.Close();
+            user.admin = false;
             return false;
         }
         public List<Pelicula> take_Films()
         {
-            List<Pelicula> films = new List<Pelicula>();
+            List <Pelicula> films = new List<Pelicula>();
             MySqlCommand cmd = ConnectDB();
             cmd.CommandText = @"
-        SELECT f.film_id, f.title, f.room, l.name AS language, f.start_date, f.end_date, f.hour, f.duration, g.name AS genre 
+        SELECT f.film_id, f.title, f.room, l.name AS language, f.start_date, f.end_date, f.hour, f.duration
         FROM film f
         JOIN language l ON f.language_id = l.language_id
-        JOIN `film-genre` fg ON f.film_id = fg.film_id
-        JOIN genre g ON fg.genre_id = g.genre_id";
+        JOIN `film-genre` fg ON f.film_id = fg.film_id";
 
             MySqlDataReader reader = cmd.ExecuteReader();
 
-            Dictionary<int, Pelicula> peliculasDict = new Dictionary<int, Pelicula>();
+            List<Pelicula> peliculasList = new List<Pelicula>();
 
             while (reader.Read())
             {
                 int filmId = reader.GetInt32("film_id");
-
-                if (!peliculasDict.ContainsKey(filmId))
+                cmd.CommandText = @"SELECT name FROM genre JOIN `film-genre` ON `film-genre`.genre_id = genre.genre_id JOIN film ON film.film_id = `film-genre`.film_id WHERE film.film_id = "+ filmId+ ";";
+                MySqlDataReader reader2 = cmd.ExecuteReader();
+                List<String> generos = new List<String>();
+                while (reader2.Read())
                 {
-                    Pelicula pelicula = new Pelicula
-                    (
-                        reader.GetString("title"),
-                        reader.GetInt32("room"),
-                        reader.GetString("language"),
-                        reader.GetDateTime("start_date"),
-                        reader.GetDateTime("end_date"),
-                        reader.GetTimeSpan("hour"),
-                        reader.GetInt32("duration"),
-                        new List<string>()
-                    );
-                    peliculasDict[filmId] = pelicula;
+                    generos.Add(reader2.GetString("name"));
                 }
+                Pelicula pelicula = new Pelicula
+                (
+                    reader.GetString("title"),
+                    reader.GetInt32("room"),
+                    reader.GetString("language"),
+                    reader.GetDateTime("start_date"),
+                    reader.GetDateTime("end_date"),
+                    reader.GetTimeSpan("hour"),
+                    reader.GetInt32("duration"),
+                    generos
+                );
+               peliculasList.Add(pelicula);
+                
 
-                peliculasDict[filmId].Generos.Add(reader.GetString("genre"));
             }
 
             reader.Close();
             cmd.Connection.Close();
 
-            return peliculasDict.Values.ToList();
+            return peliculasList;
         }
     }
 }

@@ -94,8 +94,8 @@
         <TextBox x:Name="txtBox_correo" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="200" Height="26" Margin="400,154,0,0" BorderThickness="1.5,1.5,1.5,1.5"/>
         <Label x:Name="label_pass" Content="Contraseña:" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="303,217,0,0" VerticalAlignment="Top" Height="26" Width="75" Grid.RowSpan="2" FontWeight="Bold"/>
         <PasswordBox x:Name="PassBox" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="200" Height="26" Grid.ColumnSpan="2" Margin="400,217,0,0" Grid.RowSpan="2" BorderThickness="1.5,1.5,1.5,1.5"/>
-        <Button x:Name="button_borrar" Content="Borra todo" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="216,104,0,0" Grid.Row="1" VerticalAlignment="Top" Width="104" Height="30" RenderTransformOrigin="0.841,1.001" Click="button_borrar_Click" IsCancel="True"/>
-        <Button x:Name="button_confirmar" Content="Confirmar" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="452,104,0,0" Grid.Row="1" VerticalAlignment="Top" Width="104" Height="30" RenderTransformOrigin="0.841,1.001" Click="button_confirmar_Click" IsDefault="True"/>
+        <Button x:Name="button_borrar" Content="Borra todo" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="216,104,0,0" Grid.Row="1" VerticalAlignment="Top" Width="104" Height="30" RenderTransformOrigin="0.841,1.001" Click="button_borrar_Click" IsCancel="True" BorderThickness="1.5,1.5,1.5,1.5"/>
+        <Button x:Name="button_confirmar" Content="Confirmar" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="452,104,0,0" Grid.Row="1" VerticalAlignment="Top" Width="104" Height="30" RenderTransformOrigin="0.841,1.001" Click="button_confirmar_Click" IsDefault="True" BorderThickness="1.5,1.5,1.5,1.5"/>
         <Label x:Name="Label_result" Content="" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="0,48,0,0" Grid.Row="1" VerticalAlignment="Top" Width="510" FontSize="16" FontFamily="Arial" Grid.Column="1"/>
 
     </Grid>
