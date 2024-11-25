@@ -23,8 +23,8 @@ namespace Peliculas
     /// </summary>
     public partial class Cargar_Peliculas : Window
     {
-        public Logica logica;
-        public ObservableCollection<Pelicula> listFilms { get; set; }
+        DBMachine db = new DBMachine();
+        public ObservableCollection<Pelicula> listFilms {  get; set; }
         public List<String> listGenres { get; set; }
         public List<String> listLanguages { get; set; }
         public List<String> listHours { get; set; }
@@ -52,8 +52,11 @@ namespace Peliculas
         public Cargar_Peliculas()
         {
             InitializeComponent();
-            Logica logica = new Logica();
-            this.logica = logica;
+            listFilms = new ObservableCollection<Pelicula>();
+            List<Pelicula> lista = db.take_Films();
+            for (int i = 0;i < lista.Count(); i++) { 
+                listFilms.Add(lista[i]);
+            }
             listGenres = new List<String> { "Acció", "Aventura", "Ciencia Ficció", "Comèdia", "Documental", "Drama", "Fantasía", "Musical", "Suspense", "Terror" };
             listLanguages = new List<String> { "V.O", "Castellano" };
             listHours = new List<String> { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" };
@@ -61,7 +64,7 @@ namespace Peliculas
             listSala = new List<int> { 1, 2, 3 };
             listDuration = new List<String> { "30", "60", "90", "120", "150", "180", "210" };
             this.DataContext = this;
-            filmsGrid.DataContext = logica;
+            filmsGrid.DataContext = listFilms;
         }
        
         
@@ -96,9 +99,8 @@ namespace Peliculas
                     DateTime diaFinal = diaInBox.SelectedDate.Value.AddDays(28);
                     TimeSpan hora = new TimeSpan(int.Parse(hourBox.SelectedItem.ToString()), int.Parse(minuteBox.SelectedItem.ToString()), 0);
                     int duracion = int.Parse(durationBox.SelectedItem.ToString());
-                    List<string> generos = Generos.ToList();
 
-                    Pelicula nuevaPelicula = new Pelicula(titulo, sala, idioma, diaInici, diaFinal, hora, duracion, generos);
+                    Pelicula nuevaPelicula = new Pelicula(titulo, sala, idioma, diaInici, diaFinal, hora, duracion, Generos.ToList());
 
                     listFilms.Add(nuevaPelicula);
 
