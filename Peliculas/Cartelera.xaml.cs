@@ -75,7 +75,7 @@ namespace Peliculas
                 carteleraFiltrada.Show();
                 this.Hide();
             } else {
-                MessageBox.Show("Es necesario introducir el dia de la pelicula", "Fecha faltante", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Es necesario introducir el dia de la pelicula", "Fecha faltante", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 

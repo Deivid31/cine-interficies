@@ -39,6 +39,7 @@ namespace Peliculas
             else if (num == 1)
             {
                 Cargar_Peliculas cargar = new Cargar_Peliculas();
+                this.Close();
                 cargar.ShowDialog();
             }
             else if (num == 3)

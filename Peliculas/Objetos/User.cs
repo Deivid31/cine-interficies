@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Peliculas.Objetos
 {
-    internal class User
+    public class User
     {
         public String mail { get; set; }
         public String passwd { get; set; }
