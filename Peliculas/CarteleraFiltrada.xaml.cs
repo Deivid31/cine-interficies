@@ -34,6 +34,10 @@ namespace Peliculas
             diaLbl.Content = inDay?.ToString("dd/MM/yyyy");
         }
 
+        /*
+        Al clicar el botón de cancelar, se vacia la lista de peliculas filtradas,
+        se cierra por completo esta ventana, y se vuelve a mostrar la de cartelera
+        */
         private void butCancelar_Click(object sender, RoutedEventArgs e)
         {
             logica.filtFilms.Clear();
@@ -41,6 +45,12 @@ namespace Peliculas
             cartelera.Show();
         }
 
+        /*
+        Al clicar al boton de reserva, se comprueba que haya una pelicula seleccionada en el Combobox,
+        en el caso de que si, se pasa el item seleccionado como un objeto "Pelicula", y luego llama a
+        la función encargada de la reserva, pasando como argumentos la fecha de la reserva (Recogida de la etiqueta)
+        y la hora/sala
+        */
         private void butReservar_Click(object sender, RoutedEventArgs e)
         {
             if (filmBox.SelectedItem != null)
@@ -50,7 +60,7 @@ namespace Peliculas
             }
             else
             {
-                MessageBox.Show("Selecciona una pelicula para hacer la reserva", "Pelicula faltante", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Selecciona una pelicula para hacer la reserva", "Pelicula faltante", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
     }

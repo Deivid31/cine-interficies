@@ -59,6 +59,6 @@
         <ComboBox x:Name="minuteBox" ItemsSource="{Binding Path=listMinutes}" HorizontalAlignment="Left" Height="30" Margin="69,268,0,0" VerticalAlignment="Top" Width="51"/>
         <Button x:Name="filtButton" Content="Filtrar" HorizontalAlignment="Left" Height="41" Margin="11,338,0,0" VerticalAlignment="Top" Width="68" Click="filtButton_Click"/>
         <Button x:Name="cleanButton" Content="Llimpiar" HorizontalAlignment="Left" Height="42" Margin="91,337,0,0" VerticalAlignment="Top" Width="68" Click="cleanButton_Click"/>
-        <Button x:Name="closeButton" Content="Tancar" HorizontalAlignment="Left" Height="42" Margin="69,382,0,0" VerticalAlignment="Top" Width="50" Click="closeButton_Click"/>
+        <Button x:Name="closeButton" Content="Tancar" HorizontalAlignment="Left" Margin="60,384,0,8" Width="50" Click="closeButton_Click"/>
     </Grid>
 </Window>

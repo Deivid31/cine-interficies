@@ -21,17 +21,18 @@ namespace Peliculas
             DBMachine dBMachine = new DBMachine();
             this.dBMachine = dBMachine;
             listFilms = new ObservableCollection<Pelicula>(dBMachine.take_Films());
-            /*
-            listFilms.Add(new Pelicula("Jonkler", 3, "Castellano", DateTime.ParseExact("20/05/2024", "dd/MM/yyyy", CultureInfo.InvariantCulture), DateTime.ParseExact("30/06/2024", "dd/MM/yyyy", CultureInfo.InvariantCulture), TimeSpan.ParseExact("15:00", "hh\\:mm", CultureInfo.InvariantCulture), 70, new List<string> { "Acció", "Aventura", "Suspense" }));
-            listFilms.Add(new Pelicula("Si", 1, "V.O", DateTime.ParseExact("17/03/2024", "dd/MM/yyyy", CultureInfo.InvariantCulture), DateTime.ParseExact("04/05/2024", "dd/MM/yyyy", CultureInfo.InvariantCulture), TimeSpan.ParseExact("13:45", "hh\\:mm", CultureInfo.InvariantCulture), 60, new List<string> { "Terror", "Suspense" }));
-            listFilms.Add(new Pelicula("No", 6, "V.O", DateTime.ParseExact("09/06/2024", "dd/MM/yyyy", CultureInfo.InvariantCulture), DateTime.ParseExact("10/07/2024", "dd/MM/yyyy", CultureInfo.InvariantCulture), TimeSpan.ParseExact("18:00", "hh\\:mm", CultureInfo.InvariantCulture), 77, new List<string> { "Comedia", "Fantasía" }));
-            */
-            filtFilms = new ObservableCollection<Pelicula>();
         }
 
+        /* 
+        Función para hacer el filtrado de las peliculas, recibe como argumento las propiedades, las cuales pueden ser NULL,
+        se instancia la lista de peliculas filtradas, basandose en la lista de todas las peliculas
+        y luego dependiendo si la propiedad pasada es NULL o no (Excepto el dia, ya que siempre se especifica)
+        entonces filtrara con el Where las peliculas, dejando solo las que cumplan con el criterio
+        */
         public void Filtrar(String genre, String lang, DateTime? dayIn, TimeSpan? hourIn)
         {
             filtFilms = new ObservableCollection<Pelicula>(listFilms);
+            filtFilms = new ObservableCollection<Pelicula>(filtFilms.Where(p => p.diaInici <= dayIn && dayIn <= p.diaFinal));
             if (!string.IsNullOrEmpty(genre))
             {
                 filtFilms = new ObservableCollection<Pelicula>(filtFilms.Where(p => p.Generos.Contains(genre)));
@@ -44,21 +45,6 @@ namespace Peliculas
             {
                 filtFilms = new ObservableCollection<Pelicula>(filtFilms.Where(p => p.Hora == hourIn));
             }
-            filtFilms = new ObservableCollection<Pelicula>(filtFilms.Where(p => p.diaInici <= dayIn && dayIn <= p.diaFinal));
-            /*
-            foreach (Pelicula pelicula in listFilms)
-            {
-                if(pelicula.Generos.Contains(genre) && pelicula.Idioma == lang && pelicula.diaInici <= dayIn && dayIn <= pelicula.diaFinal)
-                {
-                    AddFilm(pelicula);
-                }
-            }
-        }
-            public void AddFilm(Pelicula pelicula)
-        {
-            filtFilms.Add(pelicula);
-        }
-            */
         }
     }
 }
