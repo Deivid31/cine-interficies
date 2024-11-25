@@ -9,7 +9,7 @@ using MySqlConnector;
 
 namespace Peliculas.Objetos
 {
-    internal class DBMachine
+    public class DBMachine
     {
         private String Host = "localhost";
         private String User = "root";

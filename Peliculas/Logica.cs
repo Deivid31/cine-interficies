@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Peliculas.Objetos;
@@ -11,15 +12,20 @@ namespace Peliculas
 {
     public class Logica
     {
+        public DBMachine dBMachine;
         public ObservableCollection<Pelicula> listFilms { get; set; }
         public ObservableCollection<Pelicula> filtFilms { get; set; }
 
         public Logica()
         {
-            listFilms = new ObservableCollection<Pelicula>();
+            DBMachine dBMachine = new DBMachine();
+            this.dBMachine = dBMachine;
+            listFilms = new ObservableCollection<Pelicula>(dBMachine.take_Films());
+            /*
             listFilms.Add(new Pelicula("Jonkler", 3, "Castellano", DateTime.ParseExact("20/05/2024", "dd/MM/yyyy", CultureInfo.InvariantCulture), DateTime.ParseExact("30/06/2024", "dd/MM/yyyy", CultureInfo.InvariantCulture), TimeSpan.ParseExact("15:00", "hh\\:mm", CultureInfo.InvariantCulture), 70, new List<string> { "Acció", "Aventura", "Suspense" }));
             listFilms.Add(new Pelicula("Si", 1, "V.O", DateTime.ParseExact("17/03/2024", "dd/MM/yyyy", CultureInfo.InvariantCulture), DateTime.ParseExact("04/05/2024", "dd/MM/yyyy", CultureInfo.InvariantCulture), TimeSpan.ParseExact("13:45", "hh\\:mm", CultureInfo.InvariantCulture), 60, new List<string> { "Terror", "Suspense" }));
             listFilms.Add(new Pelicula("No", 6, "V.O", DateTime.ParseExact("09/06/2024", "dd/MM/yyyy", CultureInfo.InvariantCulture), DateTime.ParseExact("10/07/2024", "dd/MM/yyyy", CultureInfo.InvariantCulture), TimeSpan.ParseExact("18:00", "hh\\:mm", CultureInfo.InvariantCulture), 77, new List<string> { "Comedia", "Fantasía" }));
+            */
             filtFilms = new ObservableCollection<Pelicula>();
         }
 
