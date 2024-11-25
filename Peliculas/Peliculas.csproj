@@ -110,6 +110,7 @@
     </Compile>
     <Compile Include="Objetos\DBMachine.cs" />
     <Compile Include="Objetos\Pelicula.cs" />
+    <Compile Include="Objetos\User.cs" />
     <Compile Include="seatsWindow.xaml.cs">
       <DependentUpon>seatsWindow.xaml</DependentUpon>
     </Compile>
