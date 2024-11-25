@@ -25,7 +25,7 @@ namespace Peliculas
     {
         DBMachine db = new DBMachine();
         int seguidas = 0;
-        User userBinding;
+        public User userBinding;
 
         public MainWindow()
         {
@@ -73,6 +73,7 @@ namespace Peliculas
             {
                 if (EsCorreoValido(txtBox_correo.Text) && PassBox.Password.Length >= 3)
                 {
+                    userBinding = new User(txtBox_correo.Text, PassBox.Password);
                     if (db.userExist(userBinding))
                     {
                         if (db.checkUser(userBinding))

@@ -17,7 +17,7 @@ namespace Peliculas.Objetos
         private String db = "cine_interficies";
 
 
-        private MySqlCommand ConnectDB()
+        public MySqlCommand ConnectDB()
         {
             MySqlConnection c = new MySqlConnection("host=" + Host + ";user=" + User + ";password=" + passwd + ";database=" + db + ";");
             c.Open();
@@ -100,46 +100,48 @@ namespace Peliculas.Objetos
         }
         public List<Pelicula> take_Films()
         {
-            List<Pelicula> films = new List<Pelicula>();
+            List <Pelicula> films = new List<Pelicula>();
             MySqlCommand cmd = ConnectDB();
             cmd.CommandText = @"
-        SELECT f.film_id, f.title, f.room, l.name AS language, f.start_date, f.end_date, f.hour, f.duration, g.name AS genre 
+        SELECT f.film_id, f.title, f.room, l.name AS language, f.start_date, f.end_date, f.hour, f.duration
         FROM film f
         JOIN language l ON f.language_id = l.language_id
-        JOIN `film-genre` fg ON f.film_id = fg.film_id
-        JOIN genre g ON fg.genre_id = g.genre_id";
+        JOIN `film-genre` fg ON f.film_id = fg.film_id";
 
             MySqlDataReader reader = cmd.ExecuteReader();
 
-            Dictionary<int, Pelicula> peliculasDict = new Dictionary<int, Pelicula>();
+            List<Pelicula> peliculasList = new List<Pelicula>();
 
             while (reader.Read())
             {
                 int filmId = reader.GetInt32("film_id");
-
-                if (!peliculasDict.ContainsKey(filmId))
+                cmd.CommandText = @"SELECT name FROM genre JOIN `film-genre` ON `film-genre`.genre_id = genre.genre_id JOIN film ON film.film_id = `film-genre`.film_id WHERE film.film_id = "+ filmId+ ";";
+                MySqlDataReader reader2 = cmd.ExecuteReader();
+                List<String> generos = new List<String>();
+                while (reader2.Read())
                 {
-                    Pelicula pelicula = new Pelicula
-                    (
-                        reader.GetString("title"),
-                        reader.GetInt32("room"),
-                        reader.GetString("language"),
-                        reader.GetDateTime("start_date"),
-                        reader.GetDateTime("end_date"),
-                        reader.GetTimeSpan("hour"),
-                        reader.GetInt32("duration"),
-                        new List<string>()
-                    );
-                    peliculasDict[filmId] = pelicula;
+                    generos.Add(reader2.GetString("name"));
                 }
+                Pelicula pelicula = new Pelicula
+                (
+                    reader.GetString("title"),
+                    reader.GetInt32("room"),
+                    reader.GetString("language"),
+                    reader.GetDateTime("start_date"),
+                    reader.GetDateTime("end_date"),
+                    reader.GetTimeSpan("hour"),
+                    reader.GetInt32("duration"),
+                    generos
+                );
+               peliculasList.Add(pelicula);
+                
 
-                peliculasDict[filmId].Generos.Add(reader.GetString("genre"));
             }
 
             reader.Close();
             cmd.Connection.Close();
 
-            return peliculasDict.Values.ToList();
+            return peliculasList;
         }
         
     }

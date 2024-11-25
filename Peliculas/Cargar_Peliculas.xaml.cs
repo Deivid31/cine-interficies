@@ -52,11 +52,7 @@ namespace Peliculas
         public Cargar_Peliculas()
         {
             InitializeComponent();
-            listFilms = new ObservableCollection<Pelicula>();
-            List<Pelicula> lista = db.take_Films();
-            for (int i = 0;i < lista.Count(); i++) { 
-                listFilms.Add(lista[i]);
-            }
+            listFilms = new ObservableCollection<Pelicula>(db.take_Films());
             listGenres = new List<String> { "Acció", "Aventura", "Ciencia Ficció", "Comèdia", "Documental", "Drama", "Fantasía", "Musical", "Suspense", "Terror" };
             listLanguages = new List<String> { "V.O", "Castellano" };
             listHours = new List<String> { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" };
