@@ -26,24 +26,24 @@ namespace Peliculas.Objetos
             return cmd;
         }
 
-        public void addUser(String mail, String passwd)
+        public void addUser(User user)
         {
             MySqlCommand cmd = ConnectDB();
             cmd.CommandText = "INSERT INTO user (mail, passwd) VALUES (?mail, ?passwd);";
 
-            cmd.Parameters.Add("?mail", MySqlDbType.VarChar).Value = mail;
-            cmd.Parameters.Add("?passwd", MySqlDbType.VarChar).Value = passwd;
+            cmd.Parameters.Add("?mail", MySqlDbType.VarChar).Value = user.mail;
+            cmd.Parameters.Add("?passwd", MySqlDbType.VarChar).Value = user.passwd;
 
             cmd.ExecuteNonQuery();
             cmd.Connection.Close();
         }
 
-        public bool userExist(String mail)
+        public bool userExist(User user)
         {
             MySqlCommand cmd = ConnectDB();
             cmd.CommandText = "SELECT * FROM user WHERE mail = ?mail;";
 
-            cmd.Parameters.Add("?mail", MySqlDbType.VarChar).Value = mail;
+            cmd.Parameters.Add("?mail", MySqlDbType.VarChar).Value = user.mail;
 
             MySqlDataReader reader = cmd.ExecuteReader();
             
@@ -57,13 +57,13 @@ namespace Peliculas.Objetos
             return false;
         }
 
-        public bool checkUser(String mail, String passwd)
+        public bool checkUser(User user)
         {
             MySqlCommand cmd = ConnectDB();
             cmd.CommandText = "SELECT * FROM user WHERE mail = ?mail AND passwd = ?passwd;";
 
-            cmd.Parameters.Add("?mail", MySqlDbType.VarChar).Value = mail;
-            cmd.Parameters.Add("?passwd", MySqlDbType.VarChar).Value = passwd;
+            cmd.Parameters.Add("?mail", MySqlDbType.VarChar).Value = user.mail;
+            cmd.Parameters.Add("?passwd", MySqlDbType.VarChar).Value = user.passwd;
 
             MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -77,13 +77,12 @@ namespace Peliculas.Objetos
             return false;
         }
 
-        public bool isAdmin(String mail)
+        public bool isAdmin(User user)
         {
             MySqlCommand cmd = ConnectDB();
             cmd.CommandText = "SELECT rol FROM user WHERE mail = ?mail";
 
-            cmd.Parameters.Add("?mail", MySqlDbType.VarChar).Value = mail;
-            cmd.Parameters.Add("?passwd", MySqlDbType.VarChar).Value = passwd;
+            cmd.Parameters.Add("?mail", MySqlDbType.VarChar).Value = user.mail;
 
             MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -92,9 +91,11 @@ namespace Peliculas.Objetos
             if (reader.GetString("rol") == "admin")
             {
                 cmd.Connection.Close();
+                user.admin = true;
                 return true;
             }
             cmd.Connection.Close();
+            user.admin = false;
             return false;
         }
     }

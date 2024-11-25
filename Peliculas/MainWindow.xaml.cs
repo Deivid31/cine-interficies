@@ -66,14 +66,14 @@ namespace Peliculas
             {
                 if (EsCorreoValido(txtBox_correo.Text) && PassBox.Password.Length >= 3)
                 {
-
-                    if (db.userExist(txtBox_correo.Text))
+                    User user = new User(txtBox_correo.Text, PassBox.Password);
+                    if (db.userExist(user))
                     {
-                        if (db.checkUser(txtBox_correo.Text, PassBox.Password))
+                        if (db.checkUser(user))
                         {
                             MessageBox.Show("Contraseña correcta, bienvenido de nuevo.", "Datos inicio de sesión", MessageBoxButton.OK, MessageBoxImage.Information);
                             seguidas = 0;
-                            if (db.isAdmin(txtBox_correo.Text))
+                            if (db.isAdmin(user))
                             {
                                 AbrirNuevaVentana(true);
                             }
@@ -91,7 +91,8 @@ namespace Peliculas
                     }
                     else
                     {
-                        db.addUser(txtBox_correo.Text, PassBox.Password);
+                        
+                        db.addUser(user);
                         MessageBox.Show("Los datos introducidos son válidos para un registro, bienvenido.", "Datos Registro", MessageBoxButton.OK, MessageBoxImage.Information);
                         seguidas = 0;
                         AbrirNuevaVentana(false);
