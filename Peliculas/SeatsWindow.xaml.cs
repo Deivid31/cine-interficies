@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Media;
@@ -25,7 +26,7 @@ namespace Cine_sillas
         public SeatsWindow(DateTime date, TimeSpan time, int room)
         {
             InitializeComponent();
-            path = $"./../../../rooms/{date}|{time}|{room}.txt";
+            path = $"./../../../rooms/{date.ToString("dd-MM-yyyy")}_{time.ToString("hh\\-mm")}_{room}.txt";
             
             ReadSeats(path);
         }

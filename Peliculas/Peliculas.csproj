@@ -103,6 +103,7 @@
     <Compile Include="CarteleraFiltrada.xaml.cs">
       <DependentUpon>CarteleraFiltrada.xaml</DependentUpon>
     </Compile>
+    <Compile Include="cosas\Leer_fichero.cs" />
     <Compile Include="Logica.cs" />
     <Compile Include="Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
