@@ -53,7 +53,7 @@ namespace Peliculas
         {
             InitializeComponent();
             listFilms = new ObservableCollection<Pelicula>(db.take_Films());
-            listGenres = new List<String> { "Acció", "Aventura", "Ciencia Ficció", "Comèdia", "Documental", "Drama", "Fantasía", "Musical", "Suspense", "Terror" };
+            listGenres = new List<String> { "Acción", "Aventura", "Ciencia Ficción", "Comedia", "Documental", "Drama", "Fantasía", "Musical", "Suspense", "Terror" };
             listLanguages = new List<String> { "V.O", "Castellano" };
             listHours = new List<String> { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" };
             listMinutes = new List<String> { "00", "15", "30", "45" };
@@ -99,7 +99,15 @@ namespace Peliculas
                     Pelicula nuevaPelicula = new Pelicula(titulo, sala, idioma, diaInici, diaFinal, hora, duracion, Generos.ToList());
 
                     listFilms.Add(nuevaPelicula);
-
+                    if (idioma.Equals("V.0"))
+                    {
+                        db.insert_Films(titulo, sala, 2, diaInici, diaFinal, hora, duracion, Generos.ToList());
+                    }
+                    else
+                    {
+                        db.insert_Films(titulo, sala, 1, diaInici, diaFinal, hora, duracion, Generos.ToList());
+                    }
+                    
                     cleanButton_Click(sender, e);
 
                     MessageBox.Show("Película añadida con éxito.", "Confirmación", MessageBoxButton.OK, MessageBoxImage.Information);
