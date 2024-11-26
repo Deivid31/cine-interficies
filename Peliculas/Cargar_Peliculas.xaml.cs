@@ -59,11 +59,23 @@ namespace Peliculas
             listMinutes = new List<String> { "00", "15", "30", "45" };
             listSala = new List<int> { 1, 2, 3 };
             listDuration = new List<String> { "30", "60", "90", "120", "150", "180", "210" };
+            
             this.DataContext = this;
             filmsGrid.DataContext = listFilms;
         }
-       
-        
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (DataContext == null)
+            {
+                MessageBox.Show("DataContext no está configurado.");
+            }
+
+            if (listFilms == null || listFilms.Count == 0)
+            {
+                MessageBox.Show("No se encontraron películas para mostrar.");
+            }
+        }
+
 
         private void cleanButton_Click(object sender, RoutedEventArgs e)
         {
