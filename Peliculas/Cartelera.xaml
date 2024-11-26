@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Peliculas"
         mc:Ignorable="d"
-        Title="Cartelera" Height="450" Width="800">
+        Title="Cartelera" Height="450" Width="800" ResizeMode="NoResize">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Foreground" Value="Black"/>
@@ -38,17 +38,17 @@
     <Grid>
         <DataGrid x:Name="filmsGrid" ItemsSource="{Binding Path=listFilms}" IsReadOnly="True" AutoGenerateColumns="False" Margin="200,10,19,0" ColumnWidth="*" Height="369" VerticalAlignment="Top">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Títol" Binding="{Binding Titulo}"/>
+                <DataGridTextColumn Header="Título" Binding="{Binding Titulo}"/>
                 <DataGridTextColumn Header="Sala" Binding="{Binding Sala}"/>
                 <DataGridTextColumn Header="Idioma" Binding="{Binding Idioma}"/>
-                <DataGridTextColumn Header="Data inicial" Binding="{Binding diaInici, StringFormat=dd/MM/yy}"/>
-                <DataGridTextColumn Header="Data final" Binding="{Binding diaFinal, StringFormat=dd/MM/yy}"/>
+                <DataGridTextColumn Header="Fecha inicial" Binding="{Binding diaInici, StringFormat=dd/MM/yy}"/>
+                <DataGridTextColumn Header="Fecha final" Binding="{Binding diaFinal, StringFormat=dd/MM/yy}"/>
                 <DataGridTextColumn Header="Hora" Binding="{Binding Hora, StringFormat=hh\\:mm}"/>
-                <DataGridTextColumn Header="Duració" Binding="{Binding Duracion}"/>
-                <DataGridTextColumn Header="Gèneres" Binding="{Binding GenerosFormatted}" Width="Auto"/>
+                <DataGridTextColumn Header="Duración" Binding="{Binding Duracion}"/>
+                <DataGridTextColumn Header="Géneros" Binding="{Binding GenerosFormatted}" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="Genere" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="Genero" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="genreBox" ItemsSource="{Binding Path=listGenres}" HorizontalAlignment="Left" Height="30" Margin="10,41,0,0" VerticalAlignment="Top" Width="168"/>
         <Label Content="Idioma" HorizontalAlignment="Left" Margin="11,92,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="langBox" ItemsSource="{Binding Path=listLanguages}" HorizontalAlignment="Left" Height="30" Margin="10,118,0,0" VerticalAlignment="Top" Width="169"/>
@@ -58,7 +58,7 @@
         <ComboBox x:Name="hourBox" ItemsSource="{Binding Path=listHours}" HorizontalAlignment="Left" Height="30" Margin="11,268,0,0" VerticalAlignment="Top" Width="51"/>
         <ComboBox x:Name="minuteBox" ItemsSource="{Binding Path=listMinutes}" HorizontalAlignment="Left" Height="30" Margin="69,268,0,0" VerticalAlignment="Top" Width="51"/>
         <Button x:Name="filtButton" Content="Filtrar" HorizontalAlignment="Left" Height="41" Margin="11,338,0,0" VerticalAlignment="Top" Width="68" Click="filtButton_Click"/>
-        <Button x:Name="cleanButton" Content="Llimpiar" HorizontalAlignment="Left" Height="42" Margin="91,337,0,0" VerticalAlignment="Top" Width="68" Click="cleanButton_Click"/>
-        <Button x:Name="closeButton" Content="Tancar" HorizontalAlignment="Left" Margin="60,384,0,8" Width="50" Click="closeButton_Click"/>
+        <Button x:Name="cleanButton" Content="Limpiar" HorizontalAlignment="Left" Height="42" Margin="111,337,0,0" VerticalAlignment="Top" Width="68" Click="cleanButton_Click"/>
+        <Button x:Name="closeButton" Content="Volver" HorizontalAlignment="Left" Margin="69,384,0,8" Width="50" Click="closeButton_Click"/>
     </Grid>
 </Window>
