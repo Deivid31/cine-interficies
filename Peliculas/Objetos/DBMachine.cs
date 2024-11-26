@@ -33,7 +33,7 @@ namespace Peliculas.Objetos
                 MessageBox.Show("No se ha podido establecer conexión con al base de datos", "Error de inicio de sesión", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return null;
             }
-            
+
         }
 
         public void addUser(User user)
@@ -72,7 +72,7 @@ namespace Peliculas.Objetos
                 return false;
             }
             return false;
-            
+
         }
 
         public bool checkUser(User user)
@@ -118,7 +118,7 @@ namespace Peliculas.Objetos
         }
         public List<Pelicula> take_Films()
         {
-            List <Pelicula> films = new List<Pelicula>();
+            List<Pelicula> films = new List<Pelicula>();
             MySqlCommand cmd = ConnectDB();
             cmd.CommandText = @"
             SELECT f.film_id, f.title, f.room, l.name AS language, f.start_date, f.end_date, f.hour, f.duration
@@ -155,8 +155,8 @@ namespace Peliculas.Objetos
                     reader.GetInt32("duration"),
                     generos
                 );
-               peliculasList.Add(pelicula);
-                
+                peliculasList.Add(pelicula);
+
 
             }
 
@@ -165,15 +165,15 @@ namespace Peliculas.Objetos
 
             return peliculasList;
         }
-        public List<Pelicula> insert_Films()
+        public void insert_Films()
         {
             List<Pelicula> films = new List<Pelicula>();
             MySqlCommand cmd = ConnectDB();
             cmd.CommandText = @"
-        SELECT f.film_id, f.title, f.room, l.name AS language, f.start_date, f.end_date, f.hour, f.duration
-        FROM film f
-        JOIN language l ON f.language_id = l.language_id
-        JOIN `film-genre` fg ON f.film_id = fg.film_id";
+SELECT f.film_id, f.title, f.room, l.name AS language, f.start_date, f.end_date, f.hour, f.duration
+FROM film f
+JOIN language l ON f.language_id = l.language_id
+JOIN `film-genre` fg ON f.film_id = fg.film_id";
 
             MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -207,8 +207,6 @@ namespace Peliculas.Objetos
 
             reader.Close();
             cmd.Connection.Close();
-
-            return peliculasList;
         }
     }
 }
