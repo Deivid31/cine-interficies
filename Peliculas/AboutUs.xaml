@@ -12,33 +12,37 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
+        <!-- Sección de desarrolladores con bordes redondeados -->
+        <Border BorderBrush="Black" BorderThickness="2" CornerRadius="10" Padding="10" Margin="30,10,30,10">
+            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Width="150" HorizontalAlignment="Center">
+                    <Image Source="/Resources/ruben.png" Width="100" Height="100" Margin="0,0,0,5" />
+                    <Label Content="Rubén Ortega" HorizontalContentAlignment="Center" FontWeight="Bold" Width="120"/>
+                    <Label Content="Programador" HorizontalContentAlignment="Center" Width="100" FontSize="10"/>
+                </StackPanel>
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10">
-            <StackPanel Width="150" HorizontalAlignment="Center">
-                <Image Source="/Resources/ruben.png" Width="100" Height="100" Margin="0,0,0,5" />
-                <Label Content="Rubén Ortega" HorizontalContentAlignment="Center" FontWeight="Bold" Width="120"/>
+                <StackPanel Width="150" HorizontalAlignment="Center">
+                    <Image Source="/Resources/david.png" Width="100" Height="100" Margin="0,0,0,5" />
+                    <Label Content="David Romero" HorizontalContentAlignment="Center" FontWeight="Bold" Width="120"/>
+                    <Label Content="Programador" HorizontalContentAlignment="Center" Width="100" FontSize="10"/>
+                </StackPanel>
+
+                <StackPanel Width="150" HorizontalAlignment="Center">
+                    <Image Source="/izan.png" Width="100" Height="100" Margin="0,0,0,5" />
+                    <Label Content="Izan Galán" HorizontalContentAlignment="Center" FontWeight="Bold" Width="120"/>
+                    <Label Content="Programador" HorizontalContentAlignment="Center" Width="100" FontSize="10"/>
+                </StackPanel>
             </StackPanel>
+        </Border>
 
-
-            <StackPanel Width="150" HorizontalAlignment="Center">
-                <Image Source="/Resources/david.png" Width="100" Height="100" Margin="0,0,0,5" />
-                <Label Content="David Romero" HorizontalContentAlignment="Center" FontWeight="Bold" Width="120"/>
+        <!-- Sección de la versión con bordes redondeados -->
+        <Border BorderBrush="Black" BorderThickness="2" CornerRadius="10" Padding="10" Margin="190,10,190,0" Grid.Row="1">
+            <StackPanel VerticalAlignment="Top">
+                <TextBlock Text="Información de la Aplicación" FontSize="18" FontWeight="Bold" Margin="0,10,0,5" HorizontalAlignment="Center"/>
+                <TextBlock TextWrapping="Wrap" Margin="10,5" TextAlignment="Center" Height="36"><Run Text="Versión"/><Run Language="es-es" Text=": "/><Run Text="0.3.3"/></TextBlock>
             </StackPanel>
+        </Border>
 
-
-            <StackPanel Width="150" HorizontalAlignment="Center">
-                <Image Source="/izan.png" Width="100" Height="100" Margin="0,0,0,5" />
-                <Label Content="Izan Galán" HorizontalContentAlignment="Center" FontWeight="Bold" Width="120"/>
-            </StackPanel>
-        </StackPanel>
-
-
-        <StackPanel Grid.Row="1" Margin="190,10,190,0" VerticalAlignment="Top" Height="87">
-            <TextBlock Text="Información de la Aplicación" FontSize="18" FontWeight="Bold" Margin="0,10,0,5" HorizontalAlignment="Center"/>
-            <TextBlock TextWrapping="Wrap" Margin="10,5" TextAlignment="Center" Height="36"><Run Text="V"/><Run Text="ersión:"/><Run Text=" "/><Run Text="0."/><Run Text="3.3"/></TextBlock>
-        </StackPanel>
-        <Label Content="Programador" HorizontalContentAlignment="Center" Margin="190,207,490,0" VerticalAlignment="Top" Width="100" FontSize="10"/>
-        <Label Content="Programador" HorizontalContentAlignment="Center" Margin="340,208,340,0" VerticalAlignment="Top" Width="100" FontSize="10"/>
-        <Label Content="Programador" HorizontalContentAlignment="Center" Margin="490,207,190,0" VerticalAlignment="Top" Width="100" FontSize="10"/>
+        <!-- Información adicional (programadores) -->
     </Grid>
 </Window>
