@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using MySqlConnector;
 
 namespace Peliculas.Objetos
@@ -19,42 +20,59 @@ namespace Peliculas.Objetos
 
         public MySqlCommand ConnectDB()
         {
-            MySqlConnection c = new MySqlConnection("host=" + Host + ";user=" + User + ";password=" + passwd + ";database=" + db + ";");
-            c.Open();
-            MySqlCommand cmd = new MySqlCommand();
-            cmd.Connection = c;
-            return cmd;
+            try
+            {
+                MySqlConnection c = new MySqlConnection("host=" + Host + ";user=" + User + ";password=" + passwd + ";database=" + db + ";");
+                c.Open();
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = c;
+                return cmd;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se ha podido establecer conexión con al base de datos", "Error de inicio de sesión", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return null;
+            }
+            
         }
 
         public void addUser(User user)
         {
             MySqlCommand cmd = ConnectDB();
-            cmd.CommandText = "INSERT INTO user (mail, passwd) VALUES (?mail, ?passwd);";
+            if (cmd != null)
+            {
+                cmd.CommandText = "INSERT INTO user (mail, passwd) VALUES (?mail, ?passwd);";
 
-            cmd.Parameters.Add("?mail", MySqlDbType.VarChar).Value = user.mail;
-            cmd.Parameters.Add("?passwd", MySqlDbType.VarChar).Value = user.passwd;
+                cmd.Parameters.Add("?mail", MySqlDbType.VarChar).Value = user.mail;
+                cmd.Parameters.Add("?passwd", MySqlDbType.VarChar).Value = user.passwd;
 
-            cmd.ExecuteNonQuery();
-            cmd.Connection.Close();
+                cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+            }
         }
 
         public bool userExist(User user)
         {
             MySqlCommand cmd = ConnectDB();
-            cmd.CommandText = "SELECT * FROM user WHERE mail = ?mail;";
-
-            cmd.Parameters.Add("?mail", MySqlDbType.VarChar).Value = user.mail;
-
-            MySqlDataReader reader = cmd.ExecuteReader();
-            
-
-            if (reader.HasRows)
+            if (cmd != null)
             {
+                cmd.CommandText = "SELECT * FROM user WHERE mail = ?mail;";
+
+                cmd.Parameters.Add("?mail", MySqlDbType.VarChar).Value = user.mail;
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+
+                if (reader.HasRows)
+                {
+                    cmd.Connection.Close();
+                    return true;
+                }
                 cmd.Connection.Close();
-                return true;
+                return false;
             }
-            cmd.Connection.Close();
             return false;
+            
         }
 
         public bool checkUser(User user)
@@ -103,10 +121,10 @@ namespace Peliculas.Objetos
             List <Pelicula> films = new List<Pelicula>();
             MySqlCommand cmd = ConnectDB();
             cmd.CommandText = @"
-        SELECT f.film_id, f.title, f.room, l.name AS language, f.start_date, f.end_date, f.hour, f.duration
-        FROM film f
-        JOIN language l ON f.language_id = l.language_id
-        JOIN `film-genre` fg ON f.film_id = fg.film_id";
+            SELECT f.film_id, f.title, f.room, l.name AS language, f.start_date, f.end_date, f.hour, f.duration
+            FROM film f
+            JOIN language l ON f.language_id = l.language_id
+            JOIN `film-genre` fg ON f.film_id = fg.film_id";
 
             MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -115,13 +133,17 @@ namespace Peliculas.Objetos
             while (reader.Read())
             {
                 int filmId = reader.GetInt32("film_id");
-                cmd.CommandText = @"SELECT name FROM genre JOIN `film-genre` ON `film-genre`.genre_id = genre.genre_id JOIN film ON film.film_id = `film-genre`.film_id WHERE film.film_id = "+ filmId+ ";";
-                MySqlDataReader reader2 = cmd.ExecuteReader();
+                MySqlCommand cmd2 = ConnectDB();
+                cmd2.CommandText = "SELECT name FROM genre JOIN `film-genre` ON `film-genre`.genre_id = genre.genre_id JOIN film ON film.film_id = `film-genre`.film_id WHERE film.film_id = ?filmId;";
+                cmd2.Parameters.Add("?filmid", MySqlDbType.Int32).Value = filmId;
+                MySqlDataReader reader2 = cmd2.ExecuteReader();
                 List<String> generos = new List<String>();
                 while (reader2.Read())
                 {
                     generos.Add(reader2.GetString("name"));
                 }
+                reader2.Close();
+                cmd2.Connection.Close();
                 Pelicula pelicula = new Pelicula
                 (
                     reader.GetString("title"),
