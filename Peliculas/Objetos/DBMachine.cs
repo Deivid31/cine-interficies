@@ -240,5 +240,30 @@ namespace Peliculas.Objetos
             }
         }
 
+
+
+        public List<String> take_seats(String time, String date, int room)
+        {
+            List<String> seatsList = new List<String>();
+            MySqlCommand cmd = ConnectDB();
+            cmd.CommandText = @"SELECT * FROM seats
+                                WHERE hour = TIME('?time') AND date = DATE(?date) AND room = ?room";
+
+            cmd.Parameters.AddWithValue("?time", time);
+            cmd.Parameters.AddWithValue("?date", date);
+            cmd.Parameters.AddWithValue("?room", room);
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                String seat = reader.GetString("seat");
+                seatsList.Add(seat);
+            }
+            reader.Close();
+            cmd.Connection.Close();
+
+            return seatsList;
+        }
+
     }
 }

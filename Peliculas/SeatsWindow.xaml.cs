@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Peliculas.Objetos;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -22,13 +23,14 @@ namespace Cine_sillas
     {
         private List<String> seats_selected = new List<String>();
         private List<String> used_seats = new List<String>();
+        DBMachine db = new DBMachine();
         string path;
         public SeatsWindow(DateTime date, TimeSpan time, int room)
         {
             InitializeComponent();
             path = $"./../../../rooms/{date.ToString("dd-MM-yyyy")}_{time.ToString("hh\\-mm")}_{room}.txt";
             
-            ReadSeats(path);
+            ReadSeats(date, time, room);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -78,7 +80,6 @@ namespace Cine_sillas
                 {
                     writer.WriteLine(str);
                 }
-                ReadSeats(path);
                 MessageBox.Show("Las entradas se han registrado con éxito", "Gracias por su compra", MessageBoxButton.OK, MessageBoxImage.Information);
                 this.Close();
             }
@@ -106,25 +107,19 @@ namespace Cine_sillas
         }
 
 
-        private void ReadSeats(String path)
+        private void ReadSeats(DateTime date, TimeSpan time, int room)
         {
-            string[] lineas = File.ReadAllLines(path);
-            string[] separar;
-
-            if (lineas.Length > 0)
+            List<String> seats = db.take_seats(time.ToString("hh\\-mm"), date.ToString("dd-MM-yyyy"), room);
+            foreach (string seat in seats)
             {
-                separar = lineas[0].Split(' ');
-                foreach (string seat in separar)
+                Button button = (Button)this.FindName(seat);
+                if (button != null)
                 {
-                    Button button = (Button)this.FindName(seat);
-                    if (button != null)
-                    {
-                        used_seats.Add(button.Name);
-                        button.Background = new SolidColorBrush(Colors.DarkRed);
-                        button.IsEnabled = false;
-                    }
-
+                    used_seats.Add(button.Name);
+                    button.Background = new SolidColorBrush(Colors.DarkRed);
+                    button.IsEnabled = false;
                 }
+
             }
         }
     }
