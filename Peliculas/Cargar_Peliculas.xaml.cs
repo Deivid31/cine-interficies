@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
+using System.IO.Packaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Peliculas.cosas;
 using Peliculas.Objetos;
 
 namespace Peliculas
@@ -23,7 +25,8 @@ namespace Peliculas
     /// </summary>
     public partial class Cargar_Peliculas : Window
     {
-        DBMachine db = new DBMachine();
+        public VerPelis verpelis;
+        public DBMachine db;
         public ObservableCollection<Pelicula> listFilms {  get; set; }
         public List<String> listGenres { get; set; }
         public List<String> listLanguages { get; set; }
@@ -52,7 +55,8 @@ namespace Peliculas
         public Cargar_Peliculas()
         {
             InitializeComponent();
-            listFilms = new ObservableCollection<Pelicula>(db.take_Films());
+            db = new DBMachine();
+            verpelis = new VerPelis();
             listGenres = new List<String> { "Acción", "Aventura", "Ciencia Ficción", "Comedia", "Documental", "Drama", "Fantasía", "Musical", "Suspense", "Terror" };
             listLanguages = new List<String> { "V.O", "Castellano" };
             listHours = new List<String> { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" };
@@ -61,7 +65,7 @@ namespace Peliculas
             listDuration = new List<String> { "30", "60", "90", "120", "150", "180", "210" };
             
             this.DataContext = this;
-            filmsGrid.DataContext = listFilms;
+            filmsGrid.DataContext = verpelis;
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
