@@ -41,6 +41,9 @@
     </Window.Resources>
 
     <Grid HorizontalAlignment="Stretch" Width="499">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -49,7 +52,7 @@
         <Rectangle Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="58" Margin="76,-31,0,0" VerticalAlignment="Top" Width="347" Stroke="#FF121212" Opacity="0.99" StrokeThickness="7" RadiusX="5" RadiusY="5"/>
         <Rectangle HorizontalAlignment="Left" Height="290" Margin="104,78,0,0" Stroke="DimGray" VerticalAlignment="Top" Width="290" Grid.ColumnSpan="2" StrokeThickness="5" RadiusX="5" RadiusY="5" Cursor=""/>
 
-        <Button x:Name="A1" VerticalAlignment="Top" Height="75" Margin="0,100,50,0" HorizontalAlignment="Right" Width="75" Click="Button_Click" Content="A1" Uid="A1"/>
+        <Button x:Name="A1" VerticalAlignment="Top" Height="75" Margin="0,100,50,0" HorizontalAlignment="Right" Width="76" Click="Button_Click" Content="A1" Uid="A1"/>
         <Button x:Name="A2" Content="A2" VerticalAlignment="Top" Height="75" Margin="212,100,0,0" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="75" Click="Button_Click" Uid="A2"/>
         <Button x:Name="A3" Content="A3" VerticalAlignment="Top" Height="75" Margin="50,100,125,0" Grid.Column="1" Width="75" Click="Button_Click" Uid="A3"/>
         <Button x:Name="B1" Content="B1" VerticalAlignment="Top" Height="75" Margin="0,185,50,0" HorizontalAlignment="Right" Width="76" Click="Button_Click" Uid="B1"/>
@@ -60,6 +63,7 @@
         <Button x:Name="C3" Content="C3" VerticalAlignment="Top" Height="75" Margin="50,270,125,0" Grid.Column="1" Click="Button_Click" Uid="C3"/>
         <Button x:Name="ButtonConfirm" Grid.Column="1" Content="Confirmar" Margin="0,0,11,10" Height="38" VerticalAlignment="Bottom" Click="ButtonConfirm_Click" HorizontalAlignment="Right" Width="78"/>
         <Label x:Name="LabelError" Content="" HorizontalAlignment="Left" Margin="104,379,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Foreground="#FFD10000" FontWeight="Bold" Width="290"/>
+        <Button x:Name="ButtonReturn" Content="Cancelar" Margin="11,0,0,10" Height="38" VerticalAlignment="Bottom" Click="ButtonReturn_Click" HorizontalAlignment="Left" Width="78"/>
     </Grid>
 </Window>
 
