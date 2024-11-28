@@ -67,18 +67,6 @@ namespace Peliculas
             this.DataContext = this;
             filmsGrid.DataContext = verpelis;
         }
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (DataContext == null)
-            {
-                MessageBox.Show("DataContext no está configurado.");
-            }
-
-            if (listFilms == null || listFilms.Count == 0)
-            {
-                MessageBox.Show("No se encontraron películas para mostrar.");
-            }
-        }
 
 
         private void cleanButton_Click(object sender, RoutedEventArgs e)
@@ -114,7 +102,7 @@ namespace Peliculas
 
                     Pelicula nuevaPelicula = new Pelicula(titulo, sala, idioma, diaInici, diaFinal, hora, duracion, Generos.ToList());
 
-                    listFilms.Add(nuevaPelicula);
+                    verpelis.AddFilm(nuevaPelicula);
                     if (idioma.Equals("V.0"))
                     {
                         db.insert_Films(titulo, sala, 2, diaInici, diaFinal, hora, duracion, Generos.ToList());
