@@ -137,8 +137,7 @@ namespace Peliculas.Objetos
             cmd.CommandText = @"
             SELECT f.film_id, f.title, f.room, l.name AS language, f.start_date, f.end_date, f.hour, f.duration
             FROM film f
-            JOIN language l ON f.language_id = l.language_id
-            JOIN `film-genre` fg ON f.film_id = fg.film_id";
+            JOIN language l ON f.language_id = l.language_id";
 
             MySqlDataReader reader = cmd.ExecuteReader();
 
