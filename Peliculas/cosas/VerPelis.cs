@@ -19,6 +19,9 @@ namespace Peliculas.cosas
             this.dBMachine = dBMachine;
             listFilms = new ObservableCollection<Pelicula>(dBMachine.take_Films());
         }
-        
+        public void AddFilm(Pelicula nuevaPelicula)
+        {
+            listFilms.Add(nuevaPelicula);
+        }
     }
 }

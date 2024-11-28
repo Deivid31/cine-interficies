@@ -114,7 +114,7 @@ namespace Peliculas
 
                     Pelicula nuevaPelicula = new Pelicula(titulo, sala, idioma, diaInici, diaFinal, hora, duracion, Generos.ToList());
 
-                    listFilms.Add(nuevaPelicula);
+                    verpelis.AddFilm(nuevaPelicula);
                     if (idioma.Equals("V.0"))
                     {
                         db.insert_Films(titulo, sala, 2, diaInici, diaFinal, hora, duracion, Generos.ToList());
