@@ -57,6 +57,7 @@ namespace Peliculas
             {
                 Pelicula pelicula = (Pelicula)filmBox.SelectedItem;
                 SeatsWindow seatsWindow = new SeatsWindow(DateTime.ParseExact((String)diaLbl.Content, "dd/MM/yyyy", CultureInfo.InvariantCulture), pelicula.Hora, pelicula.Sala);
+                seatsWindow.ShowDialog();
             }
             else
             {

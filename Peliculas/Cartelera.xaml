@@ -36,6 +36,9 @@
         </Style>
     </Window.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <DataGrid x:Name="filmsGrid" ItemsSource="{Binding Path=listFilms}" IsReadOnly="True" AutoGenerateColumns="False" Margin="200,10,19,0" ColumnWidth="*" Height="369" VerticalAlignment="Top">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Título" Binding="{Binding Titulo}"/>
@@ -52,12 +55,12 @@
         <ComboBox x:Name="genreBox" ItemsSource="{Binding Path=listGenres}" HorizontalAlignment="Left" Height="30" Margin="10,41,0,0" VerticalAlignment="Top" Width="168"/>
         <Label Content="Idioma" HorizontalAlignment="Left" Margin="11,92,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="langBox" ItemsSource="{Binding Path=listLanguages}" HorizontalAlignment="Left" Height="30" Margin="10,118,0,0" VerticalAlignment="Top" Width="169"/>
-        <Label Content="Dia inicial" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top"/>
-        <DatePicker x:Name="diaInBox" HorizontalAlignment="Left" Margin="11,202,0,0" Width="148" Height="30" VerticalAlignment="Top"/>
+        <Label Content="Dia de la película" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="diaInBox" HorizontalAlignment="Left" Margin="11,0,0,0" Width="148" Height="30" VerticalAlignment="Center"/>
         <Label Content="Hora" HorizontalAlignment="Left" Margin="10,242,0,0" VerticalAlignment="Top" Height="26"/>
         <ComboBox x:Name="hourBox" ItemsSource="{Binding Path=listHours}" HorizontalAlignment="Left" Height="30" Margin="11,268,0,0" VerticalAlignment="Top" Width="51"/>
         <ComboBox x:Name="minuteBox" ItemsSource="{Binding Path=listMinutes}" HorizontalAlignment="Left" Height="30" Margin="69,268,0,0" VerticalAlignment="Top" Width="51"/>
-        <Button x:Name="filtButton" Content="Filtrar" HorizontalAlignment="Left" Height="42" Margin="11,337,0,0" VerticalAlignment="Top" Width="68" Click="filtButton_Click"/>
+        <Button x:Name="filtButton" Content="Buscar" HorizontalAlignment="Left" Height="42" Margin="11,337,0,0" VerticalAlignment="Top" Width="68" Click="filtButton_Click"/>
         <Button x:Name="cleanButton" Content="Limpiar" HorizontalAlignment="Left" Height="42" Margin="111,337,0,0" VerticalAlignment="Top" Width="68" Click="cleanButton_Click"/>
         <Button x:Name="closeButton" Content="Volver" HorizontalAlignment="Left" Margin="69,384,0,8" Width="50" Click="closeButton_Click"/>
     </Grid>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Peliculas.Objetos;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -22,24 +23,30 @@ namespace Cine_sillas
     {
         private List<String> seats_selected = new List<String>();
         private List<String> used_seats = new List<String>();
-        string path;
-        public SeatsWindow(DateTime date, TimeSpan time, int room)
+        DBMachine db = new DBMachine();
+
+        DateTime date;
+        TimeSpan time;
+        int room;
+
+        public SeatsWindow(DateTime date2, TimeSpan time2, int room2)
         {
+            date = date2;
+            time = time2;
+            room = room2;
+
             InitializeComponent();
-            path = $"./../../../rooms/{date.ToString("dd-MM-yyyy")}_{time.ToString("hh\\-mm")}_{room}.txt";
-            
-            ReadSeats(path);
+            ReadSeats();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-            if (button.IsCancel == false)
+            if (!seats_selected.Contains(button.Name))
             {
                 if (!used_seats.Contains(button.Name))
                 {
                     button.Background = new SolidColorBrush(Colors.DarkGray);
-                    button.IsCancel = true;
                     seats_selected.Add(button.Name);
                 }
             }
@@ -48,7 +55,6 @@ namespace Cine_sillas
                 if (!used_seats.Contains(button.Name))
                 {
                     button.Background = new SolidColorBrush(Colors.LightGray);
-                    button.IsCancel = false;
                     seats_selected.Remove(button.Name);
                 }
             }
@@ -58,27 +64,7 @@ namespace Cine_sillas
         {
             if (seats_selected.Count != 0)
             {
-
-                String str = "";
-                foreach (String seat in seats_selected)
-                {
-                    Button button = (Button)this.FindName(seat);
-                    used_seats.Add(button.Name);
-                    button.Background = new SolidColorBrush(Colors.DarkRed);
-                    button.IsCancel = true;
-                }
-                seats_selected.Clear();
-                foreach (String s in used_seats)
-                {
-                    str += s + " ";
-                }
-
-                str = str.Substring(0, str.Length - 1);
-                using (StreamWriter writer = new StreamWriter(path, append: false))
-                {
-                    writer.WriteLine(str);
-                }
-                ReadSeats(path);
+                db.addSeats(seats_selected, time.ToString("hh\\:mm"), date.ToString("yyyy-MM-dd"), room);
                 MessageBox.Show("Las entradas se han registrado con éxito", "Gracias por su compra", MessageBoxButton.OK, MessageBoxImage.Information);
                 this.Close();
             }
@@ -89,43 +75,26 @@ namespace Cine_sillas
         }
 
 
-
-        private void GraySeats()
+        private void ReadSeats()
         {
-            A1.Background = new SolidColorBrush(Colors.LightGray);
-            A2.Background = new SolidColorBrush(Colors.LightGray);
-            A3.Background = new SolidColorBrush(Colors.LightGray);
+            List<String> seats = db.take_seats(time.ToString("hh\\:mm"), date.ToString("yyyy-MM-dd"), room);
 
-            B1.Background = new SolidColorBrush(Colors.LightGray);
-            B2.Background = new SolidColorBrush(Colors.LightGray);
-            B3.Background = new SolidColorBrush(Colors.LightGray);
+            foreach (string seat in seats)
+            {
+                Button button = (Button)this.FindName(seat);
+                if (button != null)
+                {
+                    used_seats.Add(button.Name);
+                    button.Background = new SolidColorBrush(Colors.DarkRed);
+                    button.IsEnabled = false;
+                }
 
-            C1.Background = new SolidColorBrush(Colors.LightGray);
-            C2.Background = new SolidColorBrush(Colors.LightGray);
-            C3.Background = new SolidColorBrush(Colors.LightGray);
+            }
         }
 
-
-        private void ReadSeats(String path)
+        private void ButtonReturn_Click(object sender, RoutedEventArgs e)
         {
-            string[] lineas = File.ReadAllLines(path);
-            string[] separar;
-
-            if (lineas.Length > 0)
-            {
-                separar = lineas[0].Split(' ');
-                foreach (string seat in separar)
-                {
-                    Button button = (Button)this.FindName(seat);
-                    if (button != null)
-                    {
-                        used_seats.Add(button.Name);
-                        button.Background = new SolidColorBrush(Colors.DarkRed);
-                        button.IsEnabled = false;
-                    }
-
-                }
-            }
+            this.Close();
         }
     }
 }

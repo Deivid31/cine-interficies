@@ -240,5 +240,53 @@ namespace Peliculas.Objetos
             }
         }
 
+
+
+        public List<String> take_seats(String time, String date, int room)
+        {
+            List<String> seatsList = new List<String>();
+            MySqlCommand cmd = ConnectDB();
+            cmd.CommandText = @"SELECT seat FROM seats
+                                WHERE hour = TIME(?time) AND date = DATE(?date) AND room = ?room";
+
+
+            cmd.Parameters.AddWithValue("?time", time);
+            cmd.Parameters.AddWithValue("?date", date);
+            cmd.Parameters.AddWithValue("?room", room);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            
+
+            while (reader.Read())
+            {
+                String seat = reader.GetString("seat");
+                seatsList.Add(seat);
+            }
+            reader.Close();
+            cmd.Connection.Close();
+
+            return seatsList;
+        }
+
+
+        public void addSeats(List<String> seats, String time, String date, int room)
+        {
+            foreach (String seat in seats)
+            {
+                MySqlCommand cmd = ConnectDB();
+                if (cmd != null)
+                {
+                    cmd.CommandText = "INSERT INTO seats (seat, date, room, hour) VALUES (?seat, DATE(?date), ?room, TIME(?hour));";
+
+                    cmd.Parameters.Add("?seat", MySqlDbType.VarChar).Value = seat;
+                    cmd.Parameters.Add("?date", MySqlDbType.VarChar).Value = date;
+                    cmd.Parameters.Add("?room", MySqlDbType.Int32).Value = room;
+                    cmd.Parameters.Add("?hour", MySqlDbType.VarChar).Value = time;
+
+                    cmd.ExecuteNonQuery();
+                    cmd.Connection.Close();
+                }
+            }
+        }
+
     }
 }
