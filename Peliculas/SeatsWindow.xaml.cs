@@ -31,10 +31,11 @@ namespace Cine_sillas
 
         public SeatsWindow(DateTime date2, TimeSpan time2, int room2)
         {
-            InitializeComponent();
             date = date2;
             time = time2;
             room = room2;
+
+            InitializeComponent();
             ReadSeats();
         }
 
