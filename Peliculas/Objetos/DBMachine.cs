@@ -270,22 +270,21 @@ namespace Peliculas.Objetos
 
         public void addSeats(List<String> seats, String time, String date, int room)
         {
-            MySqlCommand cmd = ConnectDB();
-            if (cmd != null)
+            foreach (String seat in seats)
             {
-                cmd.CommandText = "INSERT INTO seats (seat, date, room, hour) VALUES (?seat, DATE(?date), ?room, TIME(?hour));";
-
-                foreach (String seat in seats)
+                MySqlCommand cmd = ConnectDB();
+                if (cmd != null)
                 {
+                    cmd.CommandText = "INSERT INTO seats (seat, date, room, hour) VALUES (?seat, DATE(?date), ?room, TIME(?hour));";
+
                     cmd.Parameters.Add("?seat", MySqlDbType.VarChar).Value = seat;
                     cmd.Parameters.Add("?date", MySqlDbType.VarChar).Value = date;
                     cmd.Parameters.Add("?room", MySqlDbType.Int32).Value = room;
                     cmd.Parameters.Add("?hour", MySqlDbType.VarChar).Value = time;
 
                     cmd.ExecuteNonQuery();
+                    cmd.Connection.Close();
                 }
-                
-                cmd.Connection.Close();
             }
         }
 

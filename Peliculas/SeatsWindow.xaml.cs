@@ -42,12 +42,11 @@ namespace Cine_sillas
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-            if (button.IsCancel == false)
+            if (!seats_selected.Contains(button.Name))
             {
                 if (!used_seats.Contains(button.Name))
                 {
                     button.Background = new SolidColorBrush(Colors.DarkGray);
-                    button.IsCancel = true;
                     seats_selected.Add(button.Name);
                 }
             }
@@ -56,7 +55,6 @@ namespace Cine_sillas
                 if (!used_seats.Contains(button.Name))
                 {
                     button.Background = new SolidColorBrush(Colors.LightGray);
-                    button.IsCancel = false;
                     seats_selected.Remove(button.Name);
                 }
             }

@@ -58,7 +58,7 @@
         <Button x:Name="C1" Content="C1" VerticalAlignment="Top" Height="75" Margin="0,270,50,0" HorizontalAlignment="Right" Width="76" Click="Button_Click" Uid="C1"/>
         <Button x:Name="C2" Content="C2" VerticalAlignment="Top" Height="75" Margin="212,270,0,0" HorizontalAlignment="Left" Width="76" Grid.ColumnSpan="2" Click="Button_Click" Uid="C2"/>
         <Button x:Name="C3" Content="C3" VerticalAlignment="Top" Height="75" Margin="50,270,125,0" Grid.Column="1" Click="Button_Click" Uid="C3"/>
-        <Button x:Name="ButtonConfirm" Grid.Column="1" Content="Confirmar" Margin="160,0,11,10" Height="38" VerticalAlignment="Bottom" Click="ButtonConfirm_Click"/>
+        <Button x:Name="ButtonConfirm" Grid.Column="1" Content="Confirmar" Margin="0,0,11,10" Height="38" VerticalAlignment="Bottom" Click="ButtonConfirm_Click" HorizontalAlignment="Right" Width="78"/>
         <Label x:Name="LabelError" Content="" HorizontalAlignment="Left" Margin="104,379,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Foreground="#FFD10000" FontWeight="Bold" Width="290"/>
     </Grid>
 </Window>
