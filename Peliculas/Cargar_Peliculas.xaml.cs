@@ -159,6 +159,11 @@ namespace Peliculas
             Genres_TxtB.Text = GenerosString;
         }
 
-        
+        private void VolverButton_Click(object sender, RoutedEventArgs e)
+        {
+            Menu cargar = new Menu(true);
+            this.Close();
+            cargar.ShowDialog();
+        }
     }
 }
