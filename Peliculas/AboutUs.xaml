@@ -16,13 +16,13 @@
         <Border BorderBrush="Black" BorderThickness="2" CornerRadius="10" Padding="10" Margin="30,10,30,10">
             <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <StackPanel Width="150" HorizontalAlignment="Center">
-                    <Image Source="/Resources/ruben.png" Width="100" Height="100" Margin="0,0,0,5" />
+                    <Image Source="/ruben.png" Width="100" Height="100" Margin="0,0,0,5" />
                     <Label Content="Rubén Ortega" HorizontalContentAlignment="Center" FontWeight="Bold" Width="120"/>
                     <Label Content="Programador" HorizontalContentAlignment="Center" Width="100" FontSize="10"/>
                 </StackPanel>
 
                 <StackPanel Width="150" HorizontalAlignment="Center">
-                    <Image Source="/Resources/david.png" Width="100" Height="100" Margin="0,0,0,5" />
+                    <Image Source="/david.png" Width="100" Height="100" Margin="0,0,0,5" />
                     <Label Content="David Romero" HorizontalContentAlignment="Center" FontWeight="Bold" Width="120"/>
                     <Label Content="Programador" HorizontalContentAlignment="Center" Width="100" FontSize="10"/>
                 </StackPanel>

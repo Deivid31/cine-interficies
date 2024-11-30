@@ -23,6 +23,10 @@ namespace Peliculas
         public Logica logica;
         public Cartelera cartelera;
 
+        /*
+        Inicialización de la ventana con la cartelera filtrada, llamando a la función de filtrado de la clase logica,
+        indicando el DataContext para el DataGrid y el combobox, y mostrando el dia seleccionado en una Label
+        */
         public CarteleraFiltrada(Cartelera cartelera, Logica logica, String genre, String lang, DateTime? inDay, TimeSpan? hourIn)
         {
             InitializeComponent();

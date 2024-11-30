@@ -39,8 +39,9 @@ namespace Peliculas
             filmsGrid.DataContext = logica;
             diaInBox.SelectedDate = DateTime.Now;
         }
-
-
+        /*
+        Función para limpiar la selección de los Widgets de filtrado 
+        */
         private void cleanButton_Click(object sender, RoutedEventArgs e)
         {
             genreBox.SelectedItem = null;
@@ -50,6 +51,12 @@ namespace Peliculas
             minuteBox.SelectedItem = null;
         }
 
+        /*
+        Función la cual recoge el contenido de los Widgets para filtrar, en el caso del dia comprueba que no sea null, ya
+        que es obligatorio poner uno, y si no muestra un aviso, en el caso del dia se comprueba si hay al menos una de las
+        opciones seleccionadas o ambas, dependiendo el caso se le puede asignar un tiempo u otro (Incluyendo ninguno)
+        Luego llama y pasa esta información a una funcion de la ventana de peliculas filtradas, y esconde esta
+        */
         private void filtButton_Click(object sender, RoutedEventArgs e)
         {
             var genre = genreBox.Text;
@@ -79,6 +86,9 @@ namespace Peliculas
             }
         }
 
+        /*
+        Función para cerrar la ventana al clicar el boton de "Tancar"
+        */
         private void closeButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

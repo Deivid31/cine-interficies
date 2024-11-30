@@ -31,6 +31,9 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style TargetType="DataGridCell">
+            <Setter Property="TextBlock.TextAlignment" Value="Right" />
+        </Style>
     </Window.Resources>
     <Grid>
         <DataGrid x:Name="filmsGrid" ItemsSource="{Binding Path=filtFilms}" IsReadOnly="True" AutoGenerateColumns="False" Height="353" Margin="192,10,34,0" VerticalAlignment="Top" ColumnWidth="*">
@@ -42,7 +45,7 @@
                 <DataGridTextColumn Header="Fecha final" Binding="{Binding diaFinal, StringFormat=dd/MM/yy}"/>
                 <DataGridTextColumn Header="Hora" Binding="{Binding Hora, StringFormat=hh\\:mm}"/>
                 <DataGridTextColumn Header="Duración" Binding="{Binding Duracion}"/>
-                <DataGridComboBoxColumn Header="Géneros" ItemsSource="{Binding GenerosFormatted}"/>
+                <DataGridTextColumn Header="Géneros" Binding="{Binding GenerosFormatted}"  Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="butCancelar" Content="Volver" HorizontalAlignment="Left" Margin="89,186,0,0" VerticalAlignment="Top" Height="42" Width="55" Click="butCancelar_Click"/>
